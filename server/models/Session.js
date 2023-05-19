@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
+const dateFormat = require('../utils/helpers');
 
 const sessionSchema = new Schema({
   gameId: {
@@ -34,3 +34,7 @@ const sessionSchema = new Schema({
     },
   ],
 });
+
+const Session = model('Session', sessionSchema);
+
+module.exports = Session;
