@@ -1,11 +1,9 @@
 import { useQuery } from '@apollo/client';
 
-export default function profile() {
+export default function Profile() {
   return (
     <div>
-      <Container>
-        <h1>Welcome, User</h1>
-      </Container>
+      <h1>Welcome, User</h1>
     </div>
   );
 }
