@@ -16,10 +16,10 @@ const resolvers = {
     game: async (_, { gameId }) => {
       return Game.findOne({ _id: gameId });
     },
-    sessions: async (_, {gameId}) => {
+    sessions: async (_, { gameId }) => {
       return Session.find(gameId).populate('players');
     },
-    session: async (_, {gameId}) => {
+    session: async (_, { gameId }) => {
       return Session.findOne(gameId).populate('players');
     },
   },
@@ -48,21 +48,18 @@ const resolvers = {
       return { token, user };
     },
     createSession: async (parent, { gameId, playerId }) => {
-        const existingSession = await Session.findOne({ gameId });
-        if(existingSession.id){
-          if (existingSession.players.length === 1){
-              await Session.findOneAndUpdate(
-              { gameId },
-              { $addToSet: { players: [playerId, 0, 0] } }
-          );
-          }
-        }
-        else {
-          await Session.create(
-            { gameId, players: [playerId, 0, 0] } 
+      const existingSession = await Session.findOne({ gameId });
+      if (existingSession.id) {
+        if (existingSession.players.length === 1) {
+          await Session.findOneAndUpdate(
+            { gameId },
+            { $addToSet: { players: [playerId, 0, 0] } }
           );
         }
-        return Session
+      } else {
+        await Session.create({ gameId, players: [playerId, 0, 0] });
+      }
+      return Session;
     },
     closeSession: async (parent, { sessionId }) => {
       return Session.findOneAndDelete({ _id: sessionId });

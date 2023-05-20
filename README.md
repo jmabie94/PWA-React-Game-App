@@ -5,23 +5,28 @@
 #### React Game with React Chat -- needs more detailed description
 
 #### Due to difficulties trying to host multiple servers in a single React app, we are splitting the project into two separate React apps running separate servers, this Repository is part of an attempt at refactoring the original working repository: https://github.com/apostlex11/PWA-PROJECT
+
 ---
 
 ## Contents
+
 - [User Story](#user-story)
 - [Installation](#installation)
 - [Media](#media)
 - [Credits](#credits)
 - [Technology Used](#technology-used)
 - [License](#license)
-​
+  ​
+
 ### User Story
+
 ```md
 AS AN online gamer
 I WANT to play games online with my friends
 AND chat with them as we play against eachother
 SO THAT we can enjoy the game similarly to playing in-person!
 ```
+
 ## Installation:
 
 Utilizing the Application is simple!
@@ -29,11 +34,11 @@ Utilizing the Application is simple!
 Option A - Use the Heroku(?) deployment directly by way of (Heroku Link).
 
 Option B - Clone the repo:
-    
+
     git clone repository link
 
 Next, open an integrated terminal in your cloned folder and do the following:
-    
+
     run "npm init -y"
     run "npm i"
 
@@ -41,27 +46,34 @@ After Node Packages have installed, invoke the application (maybe?):
 
     run "npm run develop"
 
-
 Finally, the application should open automatically in your browser!
 ​
+
 ## Media
 
 ### Screenshot:
+
 ![Screenshot 1](file.location)
 
 ### Another Screenshot:
+
 ![Screenshot 2](file.location2)
 
 ### Video Walkthrough:
+
 ![Video Walkthrough](file.video.location)
 ​
+
 ## Credits
+
 - Jorge Gomez (https://github.com/jogomez)
 - Jordan Pace (https://github.com/Jaydonger)
 - Terry Sa (https://github.com/apostlex11)
 - Jack Mabie (https://github.com/jmabie94)
-​
+  ​
+
 ## Technology Used
+
     - Javascript
     - React
     - MongoDB Compass
@@ -72,8 +84,9 @@ Finally, the application should open automatically in your browser!
     - MERN
     - Socket IO
     - Other stuff
-    
+
 ## License
+
 ​
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ​
@@ -95,4 +108,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ​
+
 ---
