@@ -3,6 +3,7 @@ const timeTag = document.querySelector(".time b");
 const flipsTag = document.querySelector(".flips b");
 const refreshBtn = document.querySelector(".details button");
 
+let confettiPlayers = [];
 let disableDeck = false;
 let matchedCard = 0;
 let cardOne, cardTwo;
@@ -36,8 +37,9 @@ function matchCards(img1, img2) {
     if(img1 === img2) {
         //console.log('img1, img2 :>> ', img1, img2);
         matchedCard++;
-        if(matchedCard === cards.length/2 && timeLeft > 0) {
-            return clearInterval(timer);            
+        if(matchedCard === 6 && timeLeft > 0) {
+            makeItConfetti();     
+            return clearInterval(timer); 
         }
         cardOne.removeEventListener("click", flipCard);
         cardTwo.removeEventListener("click", flipCard);
@@ -73,7 +75,7 @@ function shuffleCard() {
     timeTag.innerText = timeLeft;
     flipsTag.innerText = flips;
     disableDeck = isPlaying = false;
-
+    
     let arr = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6];
     arr.sort(() => Math.random() > 0.5 ? 1 : -1);
 
@@ -89,8 +91,38 @@ function shuffleCard() {
 
 shuffleCard();
 
-refreshBtn.addEventListener("click", shuffleCard);
-
 cards.forEach(card => {
     card.addEventListener("click", flipCard);
 });
+
+refreshBtn.addEventListener("click", refresh);
+
+function refresh(){
+    window.location.reload();
+    shuffleCard();
+}
+
+function makeItConfetti() {
+    var confetti = document.querySelectorAll('.confetti');
+
+    if (!confetti[0].animate) {
+        return false;
+    }
+
+    for (var i = 0, len = confetti.length; i < len; ++i) {
+        var candycorn = confetti[i];
+        candycorn.innerHTML = '<div class="rotate"><div class="askew"></div></div>';
+        var scale = Math.random() * .7 + .3;
+        var player = candycorn.animate([
+        { transform: `translate3d(${(i/len*100)}vw,-5vh,0) scale(${scale}) rotate(0turn)`, opacity: scale },
+        { transform: `translate3d(${(i/len*100 + 10)}vw,105vh,0) scale(${scale}) rotate(${ Math.random() > .5 ? '' : '-'}2turn)`, opacity: 1 }
+        ], {
+        duration: Math.random() * 3000 + 5000,
+        iterations: Infinity,
+        delay: -(Math.random() * 7000)
+        });
+        
+        confettiPlayers.push(player);
+        
+    }
+}
