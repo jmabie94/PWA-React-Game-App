@@ -4,11 +4,12 @@ import Login from './Login';
 import Signup from './Signup';
 
 const FormContainer = () => {
-    const [login, setLogin] = useState(true);
+
+    const [login, setLogin] = useState(false);
 
     const ref = useRef(null);
 
-    const handleClick = () => {
+    const handleFormSubmit = () => {
         setLogin(!login);
         ref.current.classList.toggle('active');
     }
@@ -18,9 +19,9 @@ const FormContainer = () => {
         <div className='form-container' ref={ref}>
             {<Login />}
             <div className='side-div'>
-                <button type='button' onClick={handleClick}> 
+                <button type='button' onClick={handleFormSubmit}> 
                     {''}
-                    {login ? 'Signup' : 'Login'} 
+                    {login ? 'Signup' : 'Login'}
                 </button>
             </div>
             {<Signup />}

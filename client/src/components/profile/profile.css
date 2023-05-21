@@ -1,0 +1,9 @@
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+li {
+    color: black;
+}

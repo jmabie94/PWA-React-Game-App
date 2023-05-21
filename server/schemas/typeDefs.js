@@ -11,14 +11,21 @@ const typeDefs = gql`
   type Session {
     _id: ID
     gameId: String
-    startTime: Date
-    endTime: Date
+    startTime: String
+    endTime: String
     players: [Player]
+  }
+
+  type Game {
+    _id: ID
+    name: String
+    numPlayersRequired: Int
+    isActive: Boolean
   }
 
 type Player {
     playerId: ID
-    score: Number
+    score: Int
     winner: Boolean
 }
 
@@ -32,14 +39,16 @@ type Player {
     user(username: String!): User
     games:[Game]
     game(gameId: String!): Game
-    sessions: []
+    sessions(gameId: String!): [Session]
+    session(gameId: String!): Session
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
+    addProfile(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     createSession (gameId: String!, playerId: String!): Session
-    closeSession (sessionId)
+    closeSession (sessionId: String!): Session
   }
 `;
 
