@@ -34,6 +34,7 @@ export const QUERY_SINGLE_USER = gql`
   query user($username: String!) {
     user(username: $username) {
       username
+      email
     }
   }
 `;

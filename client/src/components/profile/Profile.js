@@ -6,7 +6,7 @@ import { QUERY_SINGLE_USER } from '../../utils/queries';
 import { QUERY_ALL_USERS } from '../../utils/queries';
 
 export default function Profile() {
-  const username = 'Kent Beck';
+  const username = 'Kent Beck'; //using as an example until login implementation works
   const { loading, data, error } = useQuery(QUERY_SINGLE_USER, {
     variables: { username },
   });
