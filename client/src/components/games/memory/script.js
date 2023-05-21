@@ -1,22 +1,32 @@
 const cards = document.querySelectorAll(".card");
+const timeTag = document.querySelector(".time b");
+const flipsTag = document.querySelector(".flips b");
+
 let disableDeck = false;
 let matchedCard = 0;
 let cardOne, cardTwo;
 let maxTime = 40;
+let timer = 0;
 let timeLeft = maxTime;
+let isPlaying = false;
+let flips = 0;
 
-
-function flipCard(e) {    
-    let clickedCard = e.target;
-    if(clickedCard !== cardOne){
+function flipCard({target: clickedCard}) {
+    if(!isPlaying) {
+        isPlaying = true;
+        timer = setInterval(initTimer, 1000);
+    }
+    if(clickedCard !== cardOne && !disableDeck && timeLeft > 0) {
+        flips++;
+        flipsTag.innerText = flips;
         clickedCard.classList.add("flip");
         if(!cardOne) {
             return cardOne = clickedCard;
         }
         cardTwo = clickedCard;
-
-        let cardOneImg = cardOne.querySelector(".back-view img").src;
-        let cardTwoImg = cardTwo.querySelector(".back-view img").src;
+        disableDeck = true;
+        let cardOneImg = cardOne.querySelector(".back-view img").src,
+        cardTwoImg = cardTwo.querySelector(".back-view img").src;
         matchCards(cardOneImg, cardTwoImg);
     }
 }
@@ -30,7 +40,7 @@ function matchCards(img1, img2) {
         }
         cardOne.removeEventListener("click", flipCard);
         cardTwo.removeEventListener("click", flipCard);
-        cardOne = cardTwo = "";
+        cardOne = cardTwo = "";  //seting both cards back to question mark
         return disableDeck = false;
     }
     setTimeout(() => {
@@ -45,6 +55,15 @@ function matchCards(img1, img2) {
         disableDeck = false;
     }, 1200);
 }
+
+function initTimer() {
+    if(timeLeft <= 0) {
+        return clearInterval(timer);
+    }
+    timeLeft--;
+    timeTag.innerText = timeLeft;
+}
+
 
 cards.forEach(card => {
     card.addEventListener("click", flipCard);
