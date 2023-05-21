@@ -45,6 +45,7 @@ type Player {
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
+    addProfile(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     createSession (gameId: String!, playerId: String!): Session
     closeSession (sessionId: String!): Session
