@@ -29,3 +29,19 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_SINGLE_USER = gql`
+  query user {
+    user {
+      username
+    }
+  }
+`;
+
+export const QUERY_ALL_USERS = gql`
+  query users {
+    users {
+      username
+    }
+  }
+`;
