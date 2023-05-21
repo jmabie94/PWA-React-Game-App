@@ -31,8 +31,8 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_SINGLE_USER = gql`
-  query user {
-    user {
+  query user($username: String!) {
+    user(username: $username) {
       username
     }
   }
