@@ -15,6 +15,8 @@ body{
     justify-content: center;
     min-height: 100vh;
     background: #8cedef;
+    flex-direction: column;
+    align-content: space-between;
 }
 ::selection{
     color: #fff;
@@ -24,7 +26,7 @@ body{
     padding: 25px;
     background: #f8f8ef;
     border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 .cards, .card, .view, .details, p{
     display: flex;
@@ -75,7 +77,7 @@ body{
     border-radius: 7px;
     backface-visibility: hidden;
     transition: transform 0.25s linear;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 .card .front-view img{
     max-width: 17px;
@@ -100,8 +102,28 @@ body{
     background: #fff;
     height: calc(100% / 4 - 30px);
     justify-content: space-between;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
+
+.header{
+    font-size: 40px;
+    padding: 20px;
+    margin-bottom: 10px;
+    background: #f8f8ef;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.player{
+    font-size: 18px;
+    padding: 25px;
+    color: #6563ff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background: #f8f8ef;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
 .details p{
     font-size: 18px;
     height: 17px;

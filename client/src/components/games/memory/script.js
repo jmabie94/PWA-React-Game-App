@@ -1,12 +1,13 @@
 const cards = document.querySelectorAll(".card");
 const timeTag = document.querySelector(".time b");
 const flipsTag = document.querySelector(".flips b");
+const refreshBtn = document.querySelector(".details button");
 
 let disableDeck = false;
 let matchedCard = 0;
 let cardOne, cardTwo;
 let maxTime = 40;
-let timer = 0;
+let timer;
 let timeLeft = maxTime;
 let isPlaying = false;
 let flips = 0;
@@ -25,18 +26,18 @@ function flipCard({target: clickedCard}) {
         }
         cardTwo = clickedCard;
         disableDeck = true;
-        let cardOneImg = cardOne.querySelector(".back-view img").src,
-        cardTwoImg = cardTwo.querySelector(".back-view img").src;
+        let cardOneImg = cardOne.querySelector(".back-view img").src;
+        let cardTwoImg = cardTwo.querySelector(".back-view img").src;
         matchCards(cardOneImg, cardTwoImg);
     }
 }
 
 function matchCards(img1, img2) {
     if(img1 === img2) {
-            //console.log('img1, img2 :>> ', img1, img2);
+        //console.log('img1, img2 :>> ', img1, img2);
         matchedCard++;
-        if(matchedCard == cards.length && timeLeft > 0) {
-            return clearInterval(timer);
+        if(matchedCard === cards.length/2 && timeLeft > 0) {
+            return clearInterval(timer);            
         }
         cardOne.removeEventListener("click", flipCard);
         cardTwo.removeEventListener("click", flipCard);
@@ -64,8 +65,32 @@ function initTimer() {
     timeTag.innerText = timeLeft;
 }
 
+function shuffleCard() {
+    timeLeft = maxTime;
+    flips = matchedCard = 0;
+    cardOne = cardTwo = "";
+    clearInterval(timer);
+    timeTag.innerText = timeLeft;
+    flipsTag.innerText = flips;
+    disableDeck = isPlaying = false;
+
+    let arr = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6];
+    arr.sort(() => Math.random() > 0.5 ? 1 : -1);
+
+    cards.forEach((card, index) => {
+        card.classList.remove("flip");
+        let imgTag = card.querySelector(".back-view img");
+        setTimeout(() => {
+            imgTag.src = `images/img-${arr[index]}.png`;
+        }, 500);
+        card.addEventListener("click", flipCard);
+    });
+}
+
+shuffleCard();
+
+refreshBtn.addEventListener("click", shuffleCard);
 
 cards.forEach(card => {
     card.addEventListener("click", flipCard);
 });
-
