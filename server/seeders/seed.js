@@ -6,6 +6,8 @@ const gameSeeds = require('./gameSeeds.json');
 db.once('open', async () => {
   try {
     await Session.deleteMany({});
+    await Game.deleteMany({});
+    await User.deleteMany({});
     await Game.create(gameSeeds);    
     await User.create(userSeeds);
   } 
