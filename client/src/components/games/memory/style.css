@@ -1,0 +1,8 @@
+/* Import Google Font - Wix+Madefor+Display */
+@import url('https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Wix+Madefor+Display', sans-serif;
+}
