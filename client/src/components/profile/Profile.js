@@ -1,10 +1,15 @@
+import '../lobby/navigation.css';
 import './profile.css';
 
 import Auth from '../../utils/auth';
 import { useQuery } from '@apollo/client';
+
 import { QUERY_SINGLE_USER } from '../../utils/queries';
 
 export default function Profile() {
+  // const { loading, data } = useQuery(GET_ME);
+  // console.log('data = ', data);
+  // const userData = data?.me || {};
   const email = localStorage.getItem('email'); //using as an example until login implementation works
 
   const { loading, data, error } = useQuery(QUERY_SINGLE_USER, {
@@ -33,6 +38,8 @@ export default function Profile() {
               <li>Wins/Losses: </li>
               <li></li>
             </ul>
+
+            <button id="logout" onClick={Auth.logout}>Log Out</button>
           </div>
         </>
       ) : (
