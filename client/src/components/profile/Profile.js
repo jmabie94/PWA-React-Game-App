@@ -1,3 +1,4 @@
+import '../lobby/navigation.css';
 import './profile.css';
 
 import Auth from '../../utils/auth';
@@ -31,6 +32,8 @@ export default function Profile() {
               <li>Wins/Losses: </li>
               <li></li>
             </ul>
+
+            <button onClick={Auth.logout}>Log Out</button>
           </div>
         </>
       ) : (
