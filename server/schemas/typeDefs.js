@@ -23,11 +23,11 @@ const typeDefs = gql`
     isActive: Boolean
   }
 
-type Player {
+  type Player {
     playerId: ID
     score: Int
     winner: Boolean
-}
+  }
 
   type Auth {
     token: ID!
@@ -35,20 +35,21 @@ type Player {
   }
 
   type Query {
-    users:[User]
+    users: [User]
     user(username: String!): User
-    games:[Game]
+    games: [Game]
     game(gameId: String!): Game
     sessions(gameId: String!): [Session]
     session(gameId: String!): Session
+    me: User
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     addProfile(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    createSession (gameId: String!, playerId: String!): Session
-    closeSession (sessionId: String!): Session
+    createSession(gameId: String!, playerId: String!): Session
+    closeSession(sessionId: String!): Session
   }
 `;
 
