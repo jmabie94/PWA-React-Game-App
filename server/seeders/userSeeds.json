@@ -2,30 +2,7 @@
     {
       "username": "Brian Kernighan",
       "email": "bkernighan@techfriends.dev",
-      "password": "password01",
-      "games": [
-        {
-          "tic-tac-toe": {
-            "gamesPlayed": 12,
-            "wins": 2,
-            "losses": 10
-          }
-        },
-        {
-          "hang_man": {
-            "gamesPlayed": 12,
-            "wins": 7,
-            "losses": 5
-          }
-        },
-        {
-          "checkers": {
-            "gamesPlayed": 42,
-            "wins": 42,
-            "losses": 0
-          }
-        }
-      ]
+      "password": "password01"
     },
     {
       "username": "Max Kanat-Alexander",
