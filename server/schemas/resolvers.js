@@ -7,8 +7,8 @@ const resolvers = {
     users: async () => {
       return User.find();
     },
-    user: async (_, { username }) => {
-      return User.findOne({ username });
+    user: async (_, { email }) => {
+      return User.findOne({ email: email });
     },
     games: async () => {
       return Game.find();
@@ -47,8 +47,8 @@ const resolvers = {
 
       return { token, user };
     },
-    addProfile: async (parent, args) => {
-      const user = await User.create(args);
+    addProfile: async (parent, {username, email, password}) => {
+      const user = await User.create({username, email, password});
       const token = signToken(user);
       return { token, user };
     },

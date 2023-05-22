@@ -8,7 +8,7 @@ db.once('open', async () => {
     await Session.deleteMany({});
     await Game.deleteMany({});
     await User.deleteMany({});
-    await Game.create(gameSeeds);    
+    await Game.create(gameSeeds);
     await User.create(userSeeds);
   } 
   catch (err) {

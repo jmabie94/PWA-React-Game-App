@@ -5,10 +5,10 @@ import { useQuery } from '@apollo/client';
 import { QUERY_SINGLE_USER } from '../../utils/queries';
 
 export default function Profile() {
-  const username = 'Kent Beck'; //using as an example until login implementation works
+  const email = localStorage.getItem('email'); //using as an example until login implementation works
 
   const { loading, data, error } = useQuery(QUERY_SINGLE_USER, {
-    variables: { username },
+    variables: { email },
   });
   const userData = data?.user || error;
 

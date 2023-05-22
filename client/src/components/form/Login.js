@@ -19,6 +19,12 @@ const Login = () => {
           });
     
           AuthService.login(data.login.token);
+          if(localStorage.getItem('email') !== null) {
+            localStorage.removeItem('email');
+            localStorage.setItem('email', formState.email);
+          } else {
+            localStorage.setItem('email', formState.email);
+          }
         } catch (e) {
           console.error(e);
         }
