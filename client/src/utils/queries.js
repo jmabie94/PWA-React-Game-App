@@ -46,3 +46,13 @@ export const QUERY_ALL_USERS = gql`
     }
   }
 `;
+
+export const GET_ME = gql`
+  query me {
+    me {
+      _id
+      username
+      email
+    }
+  }
+`;
