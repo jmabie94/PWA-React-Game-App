@@ -6,6 +6,7 @@ import './navigation.css';
 
 
 const NavigationBar = () => {
+
   const email = localStorage.getItem('email');
   
   const { loading, data, error } = useQuery(QUERY_SINGLE_USER, {
@@ -27,7 +28,7 @@ const NavigationBar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/">Games</Link>
+            <Link to="/games">Games</Link>
           </li>
           <li>
             <Link to="/profile">Profile</Link>
@@ -39,14 +40,15 @@ const NavigationBar = () => {
       </nav>
         {AuthService.loggedIn() ? (
         <>
-      <Link className="play" to="#">
+      <Link className="play" to="/games">
         <button>PLAY</button>
         <button id="logout" onClick={AuthService.logout}>Log Out</button>
       </Link>
         </> ) : (
-        <Link className="play" to="#">
+        <Link className="play" to="/games">
           <button>PLAY</button>
         </Link>)}
+
     </header>
     )}
   

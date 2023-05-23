@@ -1,0 +1,73 @@
+.hangman {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#hangman-img {
+  width: 300px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+#word {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.letter-underline {
+  font-size: 30px;
+}
+
+.letter {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.letter-line {
+  display: inline-block;
+  position: relative;
+  border-bottom: 2px solid #000;
+}
+
+.letter-btn {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 16px;
+  background-color: #13aeda;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#message {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #13aeda;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #13aeda;
+}
+
+.wrong {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+.game-title {
+  font-size: 75px;
+}
+
+.guessed {
+  background-color: rgb(6, 209, 6);
+  color: white;
+}
