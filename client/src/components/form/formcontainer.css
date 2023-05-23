@@ -1,47 +1,46 @@
 .form-container {
-    display: grid;
-    grid-template-columns: 70% 30% 70%;
-    width: 60%;
-    height: 400px;
-    background-color: lightcoral;
-    padding: 0px;
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    border: 2px solid black;
-    overflow: hidden;
-    border-radius: 10px;
-    transition: 0.3s linear;
+  display: grid;
+  grid-template-columns: 70% 30% 70%;
+  width: 60%;
+  height: 400px;
+  background-color: lightcoral;
+  padding: 0px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid black;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: 0.3s linear;
 }
 
 .form-container.active {
-    grid-template-columns: 0% 30% 70%;
-    transition: 0.3s linear;
+  grid-template-columns: 0% 30% 70%;
+  transition: 0.3s linear;
 }
 
-.form-container .side-div{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background:
-        url('https://i.pinimg.com/564x/f8/23/d3/f823d341d35e050517a1f42e8d0712a5.jpg');
-    background-position: center;
-    background-size: cover;
+.form-container .side-div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('https://i.pinimg.com/564x/f8/23/d3/f823d341d35e050517a1f42e8d0712a5.jpg');
+  background-position: center;
+  background-size: cover;
 }
 
 .form-container .side-div button {
-    padding: 10px 20px;
-    background-color: black;
-    color: white;
-    border: 1px solid black;
-    cursor: pointer;
-    font-size: 0.99rem;
-    transition: 0.3s linear;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  cursor: pointer;
+  font-size: 0.99rem;
+  transition: 0.3s linear;
 }
 
 .form-container .side-div button:hover {
-    background-color: rgb(55, 50, 50);
-    border: 1px solid rgb(55, 50, 50);
+  background-color: rgb(55, 50, 50);
+  border: 1px solid rgb(55, 50, 50);
 }

@@ -4,15 +4,13 @@ import { useQuery } from '@apollo/client';
 import { QUERY_SINGLE_USER } from '../../utils/queries.js';
 import './navigation.css';
 
-
 const NavigationBar = () => {
-
   const email = localStorage.getItem('email');
-  
+
   const { loading, data, error } = useQuery(QUERY_SINGLE_USER, {
     variables: { email },
   });
-  
+
   const userData = data?.user || error;
   console.log(userData);
 
@@ -21,7 +19,9 @@ const NavigationBar = () => {
       <img className="logo" src="/" alt="logo"></img>
       {AuthService.loggedIn() && userData !== undefined ? (
         <h1 id="navh1">Welcome, {userData.username}</h1>
-      ) : (<h1 id="navh1">Login or sign up to play!</h1>) }
+      ) : (
+        <h1 id="navh1">Login or sign up to play!</h1>
+      )}
       <nav>
         <ul className="nav_links">
           <li>
@@ -38,20 +38,22 @@ const NavigationBar = () => {
           </li>
         </ul>
       </nav>
-        {AuthService.loggedIn() ? (
+      {AuthService.loggedIn() ? (
         <>
-      <Link className="play" to="/games">
-        <button>PLAY</button>
-        <button id="logout" onClick={AuthService.logout}>Log Out</button>
-      </Link>
-        </> ) : (
+          <Link className="play" to="/games">
+            <button>PLAY</button>
+            <button id="logout" onClick={AuthService.logout}>
+              Log Out
+            </button>
+          </Link>
+        </>
+      ) : (
         <Link className="play" to="/games">
           <button>PLAY</button>
-        </Link>)}
-
+        </Link>
+      )}
     </header>
-    )}
-  
-
+  );
+};
 
 export default NavigationBar;

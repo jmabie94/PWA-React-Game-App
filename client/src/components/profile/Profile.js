@@ -39,7 +39,9 @@ export default function Profile() {
               <li></li>
             </ul>
 
-            <button id="logout" onClick={Auth.logout}>Log Out</button>
+            <button id="logout" onClick={Auth.logout}>
+              Log Out
+            </button>
           </div>
         </>
       ) : (

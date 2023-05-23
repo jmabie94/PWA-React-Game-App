@@ -10,8 +10,7 @@ db.once('open', async () => {
     await User.deleteMany({});
     await Game.create(gameSeeds);
     await User.create(userSeeds);
-  } 
-  catch (err) {
+  } catch (err) {
     console.error(err);
     process.exit(1);
   }
