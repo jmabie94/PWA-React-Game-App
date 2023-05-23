@@ -23,6 +23,15 @@ const typeDefs = gql`
     isActive: Boolean
   }
 
+  type Message {
+   text: String
+   createdBy: String
+ }
+
+ input MessageInput {
+   text: String
+   username: String
+ } 
   
   type Player {
     playerId: ID
@@ -49,22 +58,15 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     addProfile(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+    createMessage(messageInput: MessageInput): Message! 
     createSession(gameId: String!, playerId: String!): Session
     closeSession(sessionId: String!): Session
   }
   
+  type Subscription {
+    messageCreated: Message
+  } 
   `;
   
   module.exports = typeDefs;
-  /* createMessage(messageInput: MessageInput): Message! */
-  /* type Subsctiption */
   
-  /* type Message {
-    text: String
-    createdBy: String
-  }
-
-  type MessageInput {
-    text: String
-    username: String
-  } */

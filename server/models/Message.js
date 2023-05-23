@@ -5,4 +5,6 @@ const messageSchema = new Schema ({
     createdBy: String
 })
 
-module.exports = model('Message', messageSchema);
+const Message = model('Message', messageSchema)
+
+module.exports = Message
