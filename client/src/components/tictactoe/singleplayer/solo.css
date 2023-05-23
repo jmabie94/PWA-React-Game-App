@@ -1,0 +1,77 @@
+  /* --------------Board--------------------*/
+main {
+    flex: 1;
+    display: grid;
+    place-content: center;
+  }
+  
+  .board-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    background-color: grey;
+    gap: 0.5rem;
+    border: 7px solid black;
+  }
+
+  .winner-message {
+    font-size: 30px;
+    color: black;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+  button {
+    justify-content: center;
+  }
+
+  /* --------------CELL--------------------*/
+
+  .cell {
+    height: 150px;
+    width: 150px;
+    background: white;
+    color: green;
+    font-size: 4rem;
+    display: grid;
+    place-content: center;
+  }
+  
+  .cell:hover {
+    cursor: pointer;
+  }
+  
+  @media (max-width: 700px) {
+    .cell {
+      height: 100px;
+      width: 100px;
+    }
+  }
+
+  /* --------------Footer--------------------*/
+  footer {
+    display: flex;
+  }
+
+
+  /* --------------Header--------------------*/
+
+.header-title {
+    text-align: center;
+    color: red;
+    font-size: 50px;
+  }
+
+.solo {
+  text-align: center;
+  color: black;
+  font-size: 25px;
+}
+
+.header-div {
+  margin-bottom: 20px;
+}

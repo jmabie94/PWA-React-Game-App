@@ -1,9 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import FormContainer from './components/form/FormContainer';
-import NavigationBar from './components/lobby/Navigation';
+import FormContainer from "./components/form/FormContainer";
+import NavigationBar from "./components/lobby/Navigation";
+// import TTT from './components/tictactoe/multiplayer/TicTacToe'; 
+import Solo from './components/gamepage/mainpage'
+import SoloTTT from './components/tictactoe/singleplayer/TicTacToe'
+import SoloHangman from './components/hangman/singleplayer/hangman'
+import React from 'react';
 import Profile from './components/profile/Profile';
-// import TTT from './components/tictactoe/TicTacToe';
 // import React, { useState } from 'react';
 import {
   ApolloClient,
@@ -13,11 +17,13 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
+
 // integrating GraphQL ApolloClient
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
+
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
@@ -45,8 +51,11 @@ export default function App() {
         <NavigationBar />
         <Routes>
           <Route path="/" element={<FormContainer />} />
-          <Route path="/profile" element={<Profile />} />
-          {/* <Route path="/tictactoe" element={<TTT />} /> */}
+            <Route path="/games" element={<Solo />} />
+            <Route path="/soloTTT" element={<SoloTTT />} />
+            {/* <Route path="/onlineTTT" element={<TTT />} /> */}
+            <Route path='/soloHangman' element={<SoloHangman />} />
+            <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>
     </ApolloProvider>
