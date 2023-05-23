@@ -1,9 +1,8 @@
-/* * {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: grey;
-} */
+}
 
 li, a, button {
     font-family:Arial, Helvetica, sans-serif;
@@ -15,10 +14,10 @@ li, a, button {
 
 header {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
     padding: 30px 10%;
     background-color: rgb(0, 0, 0);
+    margin: 0;
 }
 
 .logo {
@@ -40,7 +39,7 @@ header {
 }
 
 .nav_links li a:hover {
-    color: blueviolet;
+    color: rgb(43, 183, 226);
 }
 
 button {
@@ -55,4 +54,17 @@ button {
 
 button:hover {
     background-color: rgba(0,136,169,0.7)
+}
+
+#logout {
+    background-color: red;
+}
+
+#logout:hover {
+    background-color: rgb(179, 0, 0);
+}
+
+#navh1 {
+    color: white;
+    justify-content: left;
 }
