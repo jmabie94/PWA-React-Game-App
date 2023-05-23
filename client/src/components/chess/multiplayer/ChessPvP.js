@@ -1,7 +1,7 @@
 import React from 'react';
-import Chessboard from './ChessboardPvP';
+import ChessGamePvP from './ChessboardPvP';
 
-const PvPChess = () => {
+const ChessGamePvP = () => {
   return (
     <div className="app">
       <Chessboard />

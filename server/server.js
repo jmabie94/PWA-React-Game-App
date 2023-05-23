@@ -64,6 +64,7 @@ const startApolloServer = async () => {
   db.once('open', () => {
     httpServer.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
+      // did something change in a refactor along the way where graphqlPath is no longer being designated, because if so we really need to update the following console.log
       console.log(
         `Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`
       );

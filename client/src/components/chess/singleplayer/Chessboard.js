@@ -9,11 +9,12 @@ import Header from './header';
 import { Chess } from 'chess.js';
 import { Chessboard } from 'react-chessboard';
 
+// I don't think any of the rightClicked stuff is needed
 const ChessGame = () => {
   // changed game, setGame to board, setBoard to match TicTacToe formatting (thinking of db queries)
   const [board, setBoard] = useState(new Chess());
   const [moveFrom, setMoveFrom] = useState('');
-  const [rightClickedSquares, setRightClickedSquares] = useState({});
+  //   const [rightClickedSquares, setRightClickedSquares] = useState({});
   const [moveSquares, setMoveSquares] = useState({});
   const [optionSquares, setOptionSquares] = useState({});
   const [playerTurn, setPlayerTurn] = useState(true);
@@ -102,7 +103,7 @@ const ChessGame = () => {
   };
 
   const onSquareClick = (square) => {
-    setRightClickedSquares({});
+    // setRightClickedSquares({});
 
     const resetFirstMove = (square) => {
       const hasOptions = legalMoves(square);
@@ -136,17 +137,17 @@ const ChessGame = () => {
     setPlayerTurn(!playerTurn);
   };
 
-  const onSquareRightClick = (square) => {
-    const color = 'rgba (0, 0, 225, 0.5)';
-    setRightClickedSquares({
-      ...rightClickedSquares,
-      [square]:
-        rightClickedSquares[square] &&
-        rightClickedSquares[square].backgroundColor === color
-          ? undefined
-          : { backgroundColor: color },
-    });
-  };
+  //   const onSquareRightClick = (square) => {
+  //     const color = 'rgba (0, 0, 225, 0.5)';
+  //     setRightClickedSquares({
+  //       ...rightClickedSquares,
+  //       [square]:
+  //         rightClickedSquares[square] &&
+  //         rightClickedSquares[square].backgroundColor === color
+  //           ? undefined
+  //           : { backgroundColor: color },
+  //     });
+  //   };
 
   return (
     <main>
@@ -160,7 +161,7 @@ const ChessGame = () => {
             showBoardNotation={true}
             position={game.fen()}
             onSquareClick={onSquareClick}
-            onSquareRightClick={onSquareRightClick}
+            // onSquareRightClick={onSquareRightClick}
             customBoardStyle={{
               borderRadius: '4px',
               boxShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
@@ -178,7 +179,7 @@ const ChessGame = () => {
                   board.reset();
                 });
                 setMoveSquares({});
-                setRightClickedSquares({});
+                // setRightClickedSquares({});
               }}
             >
               Reset
@@ -190,7 +191,7 @@ const ChessGame = () => {
                   board.undo();
                 });
                 setMoveSquares({});
-                setRightClickedSquares({});
+                // setRightClickedSquares({});
               }}
             >
               Undo

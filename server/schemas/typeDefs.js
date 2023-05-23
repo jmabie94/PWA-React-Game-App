@@ -1,6 +1,7 @@
 const { gql } = require('apollo-server-express');
 
 // refactoring "game", adding stuff
+// currently all the new resolvers and typedefs are specific to tictactoe, need to go through and update everything so that they are labeled in a way which is specific to tictactoe, then create parallel ones to use for chess, and import those into the correct files
 const typeDefs = gql`
   type User {
     _id: ID
