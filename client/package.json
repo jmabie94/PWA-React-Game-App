@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@apollo/client": "^3.7.14",
     "@testing-library/jest-dom": "^5.16.5",
@@ -9,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "apollo-boost": "^0.4.9",
     "graphql": "^15.8.0",
+    "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.2",

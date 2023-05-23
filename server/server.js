@@ -1,5 +1,8 @@
 const express = require('express');
-
+const { createServer } = require('http');
+const { makeExecutableSchema } = require("@graphql-tools/schema");
+const { SubscriptionServer } = require('subscriptions-transport-ws');
+const { execute, subscribe } = require('graphql');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { typeDefs, resolvers } = require('./schemas');
@@ -9,10 +12,31 @@ const db = require('./config/connection');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const server = new ApolloServer({
+const httpServer = createServer(app);
+const schema = makeExecutableSchema({
     typeDefs,
     resolvers,
-    context: authMiddleware,
+    context: authMiddleware
+});
+
+const subscriptionServer = SubscriptionServer.create(
+    { schema, execute, subscribe },
+    { server: httpServer, path: '/graphql' }
+)
+
+const server = new ApolloServer({
+    schema,
+    plugins: [
+        {
+            async serverWillStart(){
+                return{
+                    async drainServer() {
+                        subscriptionServer.close();
+                    }
+                };
+            }
+        }
+    ]
 });
 
 app.use(express.urlencoded({ extended: true }));
@@ -31,7 +55,7 @@ const startApolloServer = async () => {
     server.applyMiddleware({ app });
 
     db.once('open', () => {
-        app.listen(PORT, () => {
+        httpServer.listen(PORT, () => {
             console.log(`API server running on port ${PORT}!`);
             console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
         });

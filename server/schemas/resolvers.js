@@ -7,8 +7,8 @@ const resolvers = {
     users: async () => {
       return User.find();
     },
-    user: async (_, { username }) => {
-      return User.findOne({ username });
+    user: async (_, { email }) => {
+      return User.findOne({ email: email });
     },
     games: async () => {
       return Game.find();
@@ -21,6 +21,15 @@ const resolvers = {
     },
     session: async (_, { gameId }) => {
       return Session.findOne(gameId).populate('players');
+    },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id }).select(
+          '-__v -password'
+        );
+        return userData;
+      }
+      throw new AuthenticationError('Not logged in');
     },
   },
 
@@ -45,6 +54,11 @@ const resolvers = {
 
       const token = signToken(user);
 
+      return { token, user };
+    },
+    addProfile: async (parent, {username, email, password}) => {
+      const user = await User.create({username, email, password});
+      const token = signToken(user);
       return { token, user };
     },
     createSession: async (parent, { gameId, playerId }) => {

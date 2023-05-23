@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Tic Tac Toe",
+        "numPlayersRequired": 2,
+        "isActive": true
+    },
+    {
+        "name": "Chess",
+        "numPlayersRequired": 2,
+        "isActive": true
+    }
+]
