@@ -7,12 +7,12 @@ const NavigationBar = () => {
         <nav>
             <ul className='nav_links'>
                 <li><Link to='/'>Home</Link></li>
-                <li><Link to='/'>Games</Link></li>
+                <li><Link to='/games'>Games</Link></li>
                 <li><Link to='/'>Profile</Link></li>
-                <li><Link to='/'>Chat</Link></li>
+                <li><Link to='/chat'>Chat</Link></li>
             </ul>
         </nav>
-        <Link className='play' to='#'><button>PLAY</button></Link>
+        <Link to='/games' className='play'><button>PLAY</button></Link>
     </header>
 };
 
