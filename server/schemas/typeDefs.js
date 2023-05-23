@@ -1,5 +1,6 @@
 const { gql } = require('apollo-server-express');
 
+// refactoring "game", adding stuff
 const typeDefs = gql`
   type User {
     _id: ID
@@ -17,56 +18,60 @@ const typeDefs = gql`
   }
 
   type Game {
-    _id: ID
+    id: ID!
     name: String
-    numPlayersRequired: Int
-    isActive: Boolean
+    board: [String!]!
+    playerTurn: Boolean!
+    winner: String
+    isGameEnded: Boolean!
   }
 
   type Message {
-   text: String
-   createdBy: String
- }
+    text: String
+    createdBy: String
+  }
 
- input MessageInput {
-   text: String
-   username: String
- } 
-  
+  input MessageInput {
+    text: String
+    username: String
+  }
+
   type Player {
     playerId: ID
     score: Int
     winner: Boolean
   }
-  
+
   type Auth {
     token: ID!
     user: User
   }
-  
+
   type Query {
     users: [User]
     user(email: String!): User
     games: [Game]
-    game(gameId: String!): Game
+    game(gameId: String!): Game!
     sessions(gameId: String!): [Session]
     session(gameId: String!): Session
     me: User
   }
-  
+
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     addProfile(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    createMessage(messageInput: MessageInput): Message! 
+    createMessage(messageInput: MessageInput): Message!
     createSession(gameId: String!, playerId: String!): Session
     closeSession(sessionId: String!): Session
+    makeMove(index: Int!): Game!
+    resetGame: Game!
   }
-  
+
   type Subscription {
     messageCreated: Message
-  } 
-  `;
-  
-  module.exports = typeDefs;
-  
+    gameStateUpdated: Game!
+  }
+`;
+
+module.exports = typeDefs;

@@ -37,3 +37,16 @@ export const GET_ME = gql`
     }
   }
 `;
+
+export const GET_GAME_STATE = gql`
+  query GetGameState {
+    game {
+      id
+      name
+      board
+      playerTurn
+      winner
+      isGameEnded
+    }
+  }
+`;

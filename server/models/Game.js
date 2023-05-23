@@ -8,11 +8,18 @@ const gameSchema = new Schema({
     maxlength: 120,
     required: true,
   },
-  numPlayersRequired: {
-    type: Number,
+  board: {
+    type: [String],
     required: true,
   },
-  isActive: {
+  playerTurn: {
+    type: Boolean,
+    required: true,
+  },
+  winner: {
+    type: String,
+  },
+  isGameEnded: {
     type: Boolean,
     required: true,
   },

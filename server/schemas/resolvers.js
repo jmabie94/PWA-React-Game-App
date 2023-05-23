@@ -5,6 +5,42 @@ const { PubSub } = require('graphql-subscriptions');
 
 const pubsub = new PubSub();
 
+const initialState = {
+  id: 'game1',
+  board: Array(9).fill(''),
+  playerTurn: true,
+  winner: '',
+  isGameEnded: false,
+};
+
+let game = { ...initialState };
+
+function checkWinner() {
+  const winningCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8], // Rows
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8], // Columns
+    [0, 4, 8],
+    [2, 4, 6], // Diagonals
+  ];
+
+  for (const combo of winningCombos) {
+    const [a, b, c] = combo;
+    if (
+      game.board[a] !== '' &&
+      game.board[a] === game.board[b] &&
+      game.board[a] === game.board[c]
+    ) {
+      return game.board[a];
+    }
+  }
+
+  return null;
+}
+
 const resolvers = {
   Query: {
     users: async () => {
@@ -17,7 +53,11 @@ const resolvers = {
       return Game.find();
     },
     game: async (_, { gameId }) => {
-      return Game.findOne({ _id: gameId });
+      if (gameId === 'game1') {
+        return game;
+      } else {
+        return Game.findOne({ _id: gameId });
+      }
     },
     sessions: async (_, { gameId }) => {
       return Session.find(gameId).populate('players');
@@ -42,10 +82,10 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    createMessage: async (_, { messageInput: { text, username}}) => {
+    createMessage: async (_, { messageInput: { text, username } }) => {
       const newMessage = new Message({
         text: text,
-        createdBy: username
+        createdBy: username,
       });
 
       const res = await newMessage.save();
@@ -53,15 +93,14 @@ const resolvers = {
       pubsub.publish('MESSAGE_CREATED', {
         messageCreated: {
           text: text,
-          createdBy: username
-        }
+          createdBy: username,
+        },
       });
 
       return {
         id: res.id,
-        ...res._doc
+        ...res._doc,
       };
-
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
@@ -102,13 +141,39 @@ const resolvers = {
     closeSession: async (parent, { sessionId }) => {
       return Session.findOneAndDelete({ _id: sessionId });
     },
+    makeMove: (_, { index }) => {
+      if (game.winner || game.board[index] !== '' || game.isGameEnded) {
+        return game;
+      }
+
+      game.board[index] = game.playerTurn ? 'X' : 'O';
+      game.playerTurn = !game.playerTurn;
+
+      const winner = checkWinner();
+      if (winner || !game.board.includes('')) {
+        game.winner = winner || 'Draw';
+        game.isGameEnded = true;
+      }
+
+      pubsub.publish('GAME_STATE_UPDATED', { gameStateUpdated: game });
+
+      return game;
+    },
+    resetGame: () => {
+      game = { ...initialState };
+      pubsub.publish('GAME_STATE_UPDATED', { gameStateUpdated: game });
+      return game;
+    },
   },
 
   Subscription: {
     messageCreated: {
-      subscribe: () => pubsub.asyncIterator('MESSAGE_CREATED')
-    }
-  }
+      subscribe: () => pubsub.asyncIterator('MESSAGE_CREATED'),
+    },
+    gameStateUpdated: {
+      subscribe: () => pubsub.asyncIterator(['GAME_STATE_UPDATED']),
+    },
+  },
 };
 
 module.exports = resolvers;

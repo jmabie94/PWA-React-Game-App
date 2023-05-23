@@ -25,3 +25,15 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const MAKE_MOVE = gql`
+  mutation MakeMove($index: Int!) {
+    makeMove(index: $index) {
+      id
+      board
+      playerTurn
+      winner
+      isGameEnded
+    }
+  }
+`;
