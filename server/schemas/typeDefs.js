@@ -23,17 +23,18 @@ const typeDefs = gql`
     isActive: Boolean
   }
 
+  
   type Player {
     playerId: ID
     score: Int
     winner: Boolean
   }
-
+  
   type Auth {
     token: ID!
     user: User
   }
-
+  
   type Query {
     users: [User]
     user(email: String!): User
@@ -43,7 +44,7 @@ const typeDefs = gql`
     session(gameId: String!): Session
     me: User
   }
-
+  
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     addProfile(username: String!, email: String!, password: String!): Auth
@@ -51,6 +52,19 @@ const typeDefs = gql`
     createSession(gameId: String!, playerId: String!): Session
     closeSession(sessionId: String!): Session
   }
-`;
+  
+  `;
+  
+  module.exports = typeDefs;
+  /* createMessage(messageInput: MessageInput): Message! */
+  /* type Subsctiption */
+  
+  /* type Message {
+    text: String
+    createdBy: String
+  }
 
-module.exports = typeDefs;
+  type MessageInput {
+    text: String
+    username: String
+  } */
