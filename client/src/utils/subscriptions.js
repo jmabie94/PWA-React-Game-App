@@ -11,6 +11,7 @@ export const GAME_STATE_SUBSCRIPTION = gql`
   subscription GameStateSubscription {
     gameStateUpdated {
       id
+      name
       board
       playerTurn
       winner

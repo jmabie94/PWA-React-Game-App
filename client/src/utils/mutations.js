@@ -30,6 +30,7 @@ export const MAKE_MOVE = gql`
   mutation MakeMove($index: Int!) {
     makeMove(index: $index) {
       id
+      name
       board
       playerTurn
       winner
