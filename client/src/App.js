@@ -6,7 +6,6 @@ import NavigationBar from './components/lobby/Navigation';
 import Solo from './components/gamepage/mainpage';
 import SoloTTT from './components/tictactoe/singleplayer/TicTacToe';
 import SoloHangman from './components/hangman/singleplayer/hangman';
-import React from 'react';
 import Profile from './components/profile/Profile';
 // import React, { useState } from 'react';
 

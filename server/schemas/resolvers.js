@@ -1,6 +1,9 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Game, Session } = require('../models');
+const { User, Game, Session, Message } = require('../models');
 const { signToken } = require('../utils/auth');
+const { PubSub } = require('graphql-subscriptions');
+
+const pubsub = new PubSub();
 
 const resolvers = {
   Query: {
@@ -38,6 +41,27 @@ const resolvers = {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
       return { token, user };
+    },
+    createMessage: async (_, { messageInput: { text, username}}) => {
+      const newMessage = new Message({
+        text: text,
+        createdBy: username
+      });
+
+      const res = await newMessage.save();
+
+      pubsub.publish('MESSAGE_CREATED', {
+        messageCreated: {
+          text: text,
+          createdBy: username
+        }
+      });
+
+      return {
+        id: res.id,
+        ...res._doc
+      };
+
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
@@ -79,6 +103,12 @@ const resolvers = {
       return Session.findOneAndDelete({ _id: sessionId });
     },
   },
+
+  Subscription: {
+    messageCreated: {
+      subscribe: () => pubsub.asyncIterator('MESSAGE_CREATED')
+    }
+  }
 };
 
 module.exports = resolvers;
