@@ -8,6 +8,7 @@ mutation addProfile($username: String!, $email: String!, $password: String!) {
       _id
       username
       email
+      password
     }
   }
 }
@@ -24,4 +25,3 @@ mutation login($email: String!, $password: String!) {
     }
   }
 `;
-

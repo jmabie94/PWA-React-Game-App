@@ -21,7 +21,7 @@ const FormContainer = () => {
             <div className='side-div'>
                 <button type='button' onClick={handleFormSubmit}> 
                     {''}
-                    {login ? 'Signup' : 'Login'}
+                    {login ? 'Login' : 'Signup'}
                 </button>
             </div>
             {<Signup />}

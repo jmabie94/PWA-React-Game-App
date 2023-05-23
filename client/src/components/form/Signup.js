@@ -5,11 +5,10 @@ import { useMutation } from '@apollo/client';
 import { ADD_PROFILE } from '../../utils/mutations.js';
 
 const Signup = () => {
-
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
     const [signup] = useMutation(ADD_PROFILE);
 
-    const handleFormSubmit = async (event) => {
+    const handleSignupSubmit = async (event) => {
         event.preventDefault();
         console.log(formState);
         try {
@@ -17,8 +16,15 @@ const Signup = () => {
                 variables: { ...formState },
             });
             console.log(data);
+            console.log(data.addProfile);
 
             AuthService.login(data.addProfile.token);
+            if(localStorage.getItem('email') !== null) {
+                localStorage.removeItem('email');
+                localStorage.setItem('email', formState.email);
+              } else {
+                localStorage.setItem('email', formState.email);
+              }
         } catch (err) {
             console.error(err);
         }
@@ -42,7 +48,7 @@ const Signup = () => {
                 <input type={'email'} placeholder={'Email'} name={'email'} onChange={handleInputChange} />
                 <input type={'password'} placeholder={'Password'} name={'password'} onChange={handleInputChange} />
                 {/* <input type={'password'} placeholder={'Confirm Password'} name={'password'} onChange={handleInputChange} /> */}
-                <button type={'submit'} onClick={handleFormSubmit}>Sign Up</button>
+                <button type={'submit'} onClick={handleSignupSubmit}>Sign Up</button>
             </form>
         </div>
     )

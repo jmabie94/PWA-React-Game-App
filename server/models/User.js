@@ -19,7 +19,27 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-});
+  // games: [
+  //   {
+  //     tic_tac_toe: {
+  //       gamesPlayed: Number,
+  //       wins: Number,
+  //       losses: Number
+  //     },
+  //     checkers: {
+  //       gamesPlayed: Number,
+  //       wins: Number,
+  //       losses: Number
+  //     },
+  //     hang_man: {
+  //       gamesPlayed: Number,
+  //       wins: Number,
+  //       losses: Number
+  //     },
+  //   }
+  // ]
+},
+);
 
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {

@@ -15,7 +15,6 @@ li, a, button {
 
 header {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
     padding: 30px 10%;
     background-color: rgb(0, 0, 0);
@@ -55,4 +54,17 @@ button {
 
 button:hover {
     background-color: rgba(0,136,169,0.7)
+}
+
+#logout {
+    background-color: red;
+}
+
+#logout:hover {
+    background-color: rgb(179, 0, 0);
+}
+
+#navh1 {
+    color: white;
+    justify-content: left;
 }
