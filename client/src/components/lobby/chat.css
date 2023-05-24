@@ -1,0 +1,17 @@
+#chatwindow{
+    height: 200px;
+    border:black;
+    border-style: double;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 45%;
+    border-radius: 2%;
+}
+
+footer{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}

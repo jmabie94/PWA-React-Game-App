@@ -2,12 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import FormContainer from "./components/form/FormContainer";
 import NavigationBar from "./components/lobby/Navigation";
-// import TTT from './components/tictactoe/multiplayer/TicTacToe'; 
+import ChatWindow from "./components/lobby/Chat"
 import Solo from './components/gamepage/mainpage'
 import SoloTTT from './components/tictactoe/singleplayer/TicTacToe'
 import SoloHangman from './components/hangman/singleplayer/hangman'
 import Profile from './components/profile/Profile';
-// import React, { useState } from 'react';
 import {
   ApolloClient,
   ApolloProvider,
@@ -56,6 +55,7 @@ export default function App() {
             <Route path='/soloHangman' element={<SoloHangman />} />
             <Route path="/profile" element={<Profile />} />
         </Routes>
+        <ChatWindow />
       </Router>
     </ApolloProvider>
   );

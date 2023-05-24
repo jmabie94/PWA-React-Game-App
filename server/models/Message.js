@@ -1,8 +1,13 @@
 const { model, Schema } = require('mongoose');
 
 const messageSchema = new Schema ({
-    text: String, 
-    createdBy: String
+    text:{
+        type: String,
+        minlength: 1,
+    }, 
+    createdBy:{
+        type: String,
+    },
 })
 
 const Message = model('Message', messageSchema)

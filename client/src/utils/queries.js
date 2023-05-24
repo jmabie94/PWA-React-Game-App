@@ -28,6 +28,15 @@ export const QUERY_ALL_USERS = gql`
   }
 `;
 
+export const GET_MESSAGES = gql`
+  query messages {
+    messages {
+      text
+      createdBy
+    }
+  }
+  `
+
 export const GET_ME = gql`
   query me {
     me {

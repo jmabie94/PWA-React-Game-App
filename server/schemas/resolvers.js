@@ -4,6 +4,7 @@ const { signToken } = require('../utils/auth');
 const { PubSub } = require('graphql-subscriptions');
 
 const pubsub = new PubSub();
+// const messages = [];
 
 const resolvers = {
   Query: {
@@ -12,6 +13,9 @@ const resolvers = {
     },
     user: async (_, { email }) => {
       return User.findOne({ email: email });
+    },
+    messages: async () => {
+      return Message.find();
     },
     games: async () => {
       return Game.find();

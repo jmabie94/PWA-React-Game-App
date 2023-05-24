@@ -49,6 +49,7 @@ const typeDefs = gql`
     user(email: String!): User
     games: [Game]
     game(gameId: String!): Game
+    messages: [Message]
     sessions(gameId: String!): [Session]
     session(gameId: String!): Session
     me: User
@@ -67,6 +68,5 @@ const typeDefs = gql`
     messageCreated: Message
   } 
   `;
-  
-  module.exports = typeDefs;
-  
+
+module.exports = typeDefs;
