@@ -6,6 +6,10 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
+    ticGamesPlayed: Int
+    ticGamesWon: Int
+    ticGamesLost: Int
+    ticGamesTied: Int
   }
 
   type Session {
