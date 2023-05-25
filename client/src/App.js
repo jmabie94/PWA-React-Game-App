@@ -95,7 +95,7 @@ export default function App() {
           {/* <Route path="/PvPTTT" element={<PvPTTT />} /> */}
           <Route path="/soloHangman" element={<SoloHangman />} />
           <Route path="/SoloChess" element={<SoloChess />} />
-          <Route path='/soloBattleship' element={<SoloBattleship />} />
+          <Route path='/SoloBattleship' element={<SoloBattleship />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>
