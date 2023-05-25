@@ -12,18 +12,17 @@ export const LOGIN_USER = gql`
   }
 `;
 
-
 export const CREATE_USER = gql`
-mutation CreateUser($username: String!, $email: String!, $password: String!) {
-  createUser(username: $username, email: $email, password: $password) {
-    token
-    user {
-      email
-      password
-      username
+  mutation CreateUser($username: String!, $email: String!, $password: String!) {
+    createUser(username: $username, email: $email, password: $password) {
+      token
+      user {
+        email
+        password
+        username
+      }
     }
   }
-}
 `;
 
 export const CREATE_PROFILE = gql`
@@ -180,6 +179,52 @@ export const UPDATE_USER_GAME_STATS = gql`
         }
         wins
         losses
+      }
+    }
+  }
+`;
+
+export const CREATE_RECORD = gql`
+  mutation createRecord($playerId: String!, $gameName: String!) {
+    createRecord(playerId: $playerId, gameName = $gameName) {
+      username
+      records {
+        gameName
+        gamesLost
+        gamesPlayed
+        gamesTied
+        gamesWon
+        _id
+      }
+    }
+  }
+  `;
+
+export const UPDATE_RECORD = gql`
+  mutation updateRecord(
+    $playerId: String!
+    $gameName: String
+    $gamesPlayed: Int
+    $gamesWon: Int
+    $gamesTied: Int
+    $gamesLost: Int
+  ) {
+    updateRecord(
+      playerId: $playerId
+      gameName: $gameName
+      gamesPlayed: $gamesPlayed
+      gamesWon: $gamesWon
+      gamesTied: $gamesTied
+      gamesLost: $gamesLost
+    ) {
+      username
+      records {
+        _id
+        gameName
+        gamesLost
+        gamesPlayed
+        gamesTied
+        gamesWon
       }
     }
   }
