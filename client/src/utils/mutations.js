@@ -25,3 +25,11 @@ mutation login($email: String!, $password: String!) {
     }
   }
 `;
+
+export const CREATE_MESSAGE = gql`
+mutation Mutation($messageInput: MessageInput) {
+  createMessage(messageInput: $messageInput) {
+    createdBy
+    text
+  }
+}`
