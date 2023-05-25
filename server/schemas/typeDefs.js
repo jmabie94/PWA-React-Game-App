@@ -60,7 +60,7 @@ const typeDefs = gql`
     createRecord(playerId: String!, gameName: String!): User
     updateRecord(
       playerId: String!
-      gameName: String!
+      gameName: String
       gamesWon: Int
       gamesTied: Int
       gamesLost: Int

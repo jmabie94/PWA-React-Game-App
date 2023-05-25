@@ -75,8 +75,11 @@ const resolvers = {
       { playerId, gameName, gamesWon, gamesTied, gamesLost }
     ) => {
       return User.findOneAndUpdate(
-        { _id: playerId, records: { gameName } },
-        { $set: { gamesWon } },
+        { _id: playerId, 'records.gameName': gameName },
+        {
+          'records.$.gamesWon': gamesWon,
+        },
+
         {
           new: true,
           runValidators: true,
