@@ -6,6 +6,10 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
+  }
+
+  type Record {
+    playerId: String
     ticGamesPlayed: Int
     ticGamesWon: Int
     ticGamesLost: Int
@@ -45,12 +49,15 @@ const typeDefs = gql`
     game(gameId: String!): Game
     sessions(gameId: String!): [Session]
     session(gameId: String!): Session
+    record(playerId: String!): Record
     me: User
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     addProfile(username: String!, email: String!, password: String!): Auth
+    createRecord(playerId: String!): Record
+    updateRecord(playerId: String!): Record
     login(email: String!, password: String!): Auth
     createSession(gameId: String!, playerId: String!): Session
     closeSession(sessionId: String!): Session
