@@ -4,14 +4,16 @@
   padding: 0;
 }
 
-li,
-a,
-button {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  color: beige;
-  text-decoration: none;
+#root {
+    height: 811px;
+}
+
+li, a, button {
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: beige;
+    text-decoration: none;
 }
 
 header {
@@ -70,3 +72,4 @@ button:hover {
   color: white;
   justify-content: left;
 }
+

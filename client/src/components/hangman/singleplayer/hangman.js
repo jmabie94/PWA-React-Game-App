@@ -128,6 +128,7 @@ const SoloHangman = () => {
   };
 
   return (
+  <div className="hangman-hero">
     <div className="hangman">
       <img id="hangman-img" src={hangmanImage} alt="hangman" />
       <div id="word" className="word">
@@ -139,6 +140,7 @@ const SoloHangman = () => {
         New Game
       </button>
     </div>
+  </div>
   );
 };
 

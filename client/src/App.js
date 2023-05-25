@@ -9,6 +9,7 @@ import SoloTTT from './components/tictactoe/singleplayer/TicTacToe';
 import SoloHangman from './components/hangman/singleplayer/hangman';
 import Profile from './components/profile/Profile';
 import SoloChess from './components/chess/singleplayer/Chess';
+import SoloBattleship from './components/battleship/singleplayer/Battleship'
 // import React, { useState } from 'react';
 
 // websocket for graphql subscriptions?
@@ -94,6 +95,7 @@ export default function App() {
           {/* <Route path="/PvPTTT" element={<PvPTTT />} /> */}
           <Route path="/soloHangman" element={<SoloHangman />} />
           <Route path="/SoloChess" element={<SoloChess />} />
+          <Route path='/SoloBattleship' element={<SoloBattleship />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>
