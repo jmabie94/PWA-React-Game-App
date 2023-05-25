@@ -6,6 +6,7 @@ import NavigationBar from "./components/lobby/Navigation";
 import Solo from './components/gamepage/mainpage'
 import SoloTTT from './components/tictactoe/singleplayer/TicTacToe'
 import SoloHangman from './components/hangman/singleplayer/hangman'
+import SoloBattleship from './components/battleship/singleplayer/Battleship'
 import React from 'react';
 
 
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="/soloTTT" element={<SoloTTT />} />
             {/* <Route path="/onlineTTT" element={<TTT />} /> */}
             <Route path='/soloHangman' element={<SoloHangman />} />
+            <Route path='/soloBattleship' element={<SoloBattleship />} />
         </Routes>
       </Router>
     </ApolloProvider>
