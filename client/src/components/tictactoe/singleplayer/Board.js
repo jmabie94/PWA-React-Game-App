@@ -3,11 +3,27 @@ import Cell from './Cell';
 import './solo.css';
 import Header from './header';
 
+//Imports for updating player records
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_USER_BY_EMAIL } from '../../../utils/queries';
+import { UPDATE_RECORD, CREATE_RECORD } from '../../../utils/mutations';
+
+//get user email from localStorage
+const email = localStorage.getItem('email');
+
 const Board = () => {
   const [board, setBoard] = useState(Array(9).fill(''));
   const [playerTurn, setPlayerTurn] = useState(true);
   const [winner, setWinner] = useState('');
   const [isGameEnded, setIsGameEnded] = useState(false);
+
+  //stats stuff
+  const { loading, data, error } = useQuery(GET_USER_BY_EMAIL, {
+    variables: { email },
+  });
+  const playerId = data?.user.id || error;
+
+  const [updateRecord, { err }] = useMutation(UPDATE_RECORD);
 
   useEffect(() => {
     checkWinner();
@@ -70,6 +86,15 @@ const Board = () => {
       if (board[a] !== '' && board[a] === board[b] && board[a] === board[c]) {
         setWinner(board[a]);
         setIsGameEnded(true);
+
+        //update player record (this is happening 3 times currently...)
+        try {
+          const { data } = updateRecord({
+            variables: { playerId, gameName: 'TicTacToe' },
+          });
+        } catch (err) {
+          console.error(err);
+        }
         return;
       }
     }
