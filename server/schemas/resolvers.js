@@ -18,6 +18,9 @@ const pubsub = new PubSub();
 
 const resolvers = {
   Query: {
+    user: async (_, { email }) => {
+      return User.findOne({ email: email });
+    },
     getUser: async (parent, { id }) => {
       return User.findById(id);
     },

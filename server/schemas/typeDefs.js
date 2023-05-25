@@ -78,6 +78,7 @@ const typeDefs = gql`
   
   type Query {
     getUser(id: ID!): User
+    user(email: String!): User
     getGame(id: ID!): Game
     getBoard(id: ID!): Board
     getSession(id: ID!): Session
