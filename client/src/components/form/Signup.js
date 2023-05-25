@@ -10,19 +10,18 @@ const Signup = () => {
     email: '',
     password: '',
   });
-  const [signup] = useMutation(CREATE_USER);
+  const [signUp, {error, data }] = useMutation(CREATE_USER);
 
   const handleSignupSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
     try {
-      const { data } = await signup({
+      const { data } = await signUp({
         variables: { ...formState },
       });
+      
       console.log(data);
-      console.log(data.addProfile);
-
-      AuthService.login(data.addProfile.token);
+      AuthService.login(data.createUser.token);
       if (localStorage.getItem('email') !== null) {
         localStorage.removeItem('email');
         localStorage.setItem('email', formState.email);

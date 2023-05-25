@@ -16,7 +16,7 @@ const Login = () => {
       const { data } = await login({
         variables: { ...formState },
       });
-
+      console.log(data);
       AuthService.login(data.login.token);
       if (localStorage.getItem('email') !== null) {
         localStorage.removeItem('email');
