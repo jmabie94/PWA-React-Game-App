@@ -96,7 +96,7 @@ const typeDefs = gql`
     getAllGames: [Game!]!
     getAllUsers: [User!]!
     users: [User]
-    user(username: String!): User
+
     games: [Game]
     game(gameId: String!): Game
     sessions(gameId: String!): [Session]
@@ -146,6 +146,8 @@ const typeDefs = gql`
     subscription: Subscription
   }
 `;
+
+// user(username: String!): User
 
 module.exports = typeDefs;
 

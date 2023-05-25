@@ -20,6 +20,36 @@ export default function Profile() {
 
   console.log(userData);
 
+  function statsHtml() {
+    if (userData.records.length) {
+      for (let index = 0; index < userData.records.length; index++) {
+        return (
+          <li>
+            <h3>{userData.records[index].gameName}</h3>
+            <ul>
+              <li>
+                Games Played:
+                {userData.records[index].gamesPlayed}
+              </li>
+              <li>
+                Games Won:
+                {userData.records[index].gamesWon}
+              </li>
+              <li>
+                Games Lost:
+                {userData.records[index].gamesLost}
+              </li>
+              <li>
+                Games Tied:
+                {userData.records[index].gamesTied}
+              </li>
+            </ul>
+          </li>
+        );
+      }
+    }
+  }
+
   // if data isn't here yet, say so
   if (loading) {
     return <h2>LOADING...</h2>;
@@ -33,11 +63,36 @@ export default function Profile() {
           <h1>Welcome, {userData.username}</h1>
 
           <div className="stats-container">
-            <h2>Your Stats</h2>
+            <h2>Your Stats </h2>
+            <ul>{statsHtml()}</ul>
+
             <ul>
-              <li>Tic-Tac-Toe Games Played: </li>
-              <li>Wins/Losses: </li>
-              <li></li>
+              {/* Check if records for gameName exists, if so show it */}
+              {userData.records[0] ? (
+                <li>
+                  <h3>{userData.records[0].gameName}</h3>
+                  <ul>
+                    <li>
+                      Games Played:
+                      {userData.records[0].gamesPlayed}
+                    </li>
+                    <li>
+                      Games Won:
+                      {userData.records[0].gamesWon}
+                    </li>
+                    <li>
+                      Games Lost:
+                      {userData.records[0].gamesLost}
+                    </li>
+                    <li>
+                      Games Tied:
+                      {userData.records[0].gamesTied}
+                    </li>
+                  </ul>
+                </li>
+              ) : (
+                ''
+              )}
             </ul>
 
             <button id="logout" onClick={Auth.logout}>
