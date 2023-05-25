@@ -20,10 +20,11 @@ export default function Profile() {
 
   console.log(userData);
 
-  function statsHtml() {
+  function generateRecords() {
+    let recordsArray = [];
     if (userData.records.length) {
       for (let index = 0; index < userData.records.length; index++) {
-        return (
+        recordsArray.push(
           <li>
             <h3>{userData.records[index].gameName}</h3>
             <ul>
@@ -48,6 +49,7 @@ export default function Profile() {
         );
       }
     }
+    return recordsArray;
   }
 
   // if data isn't here yet, say so
@@ -64,37 +66,7 @@ export default function Profile() {
 
           <div className="stats-container">
             <h2>Your Stats </h2>
-            <ul>{statsHtml()}</ul>
-
-            <ul>
-              {/* Check if records for gameName exists, if so show it */}
-              {userData.records[0] ? (
-                <li>
-                  <h3>{userData.records[0].gameName}</h3>
-                  <ul>
-                    <li>
-                      Games Played:
-                      {userData.records[0].gamesPlayed}
-                    </li>
-                    <li>
-                      Games Won:
-                      {userData.records[0].gamesWon}
-                    </li>
-                    <li>
-                      Games Lost:
-                      {userData.records[0].gamesLost}
-                    </li>
-                    <li>
-                      Games Tied:
-                      {userData.records[0].gamesTied}
-                    </li>
-                  </ul>
-                </li>
-              ) : (
-                ''
-              )}
-            </ul>
-
+            <ul>{generateRecords()}</ul>
             <button id="logout" onClick={Auth.logout}>
               Log Out
             </button>
