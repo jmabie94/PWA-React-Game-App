@@ -1,46 +1,45 @@
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .card-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-    margin-top: 20px;
-  }
-  
-  .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: #333;
-  }
-  
-  .card img {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 4px;
-  }
-  
-  .card h3 {
-    margin-top: 10px;
-  }
-  
-  h1 {
-    margin-bottom: 20px;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: center;
-  }
-  
- 
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+}
+
+.card img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.card h3 {
+  margin-top: 10px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
 .game-button {
   display: inline-block;
   padding: 10px 20px;
@@ -56,7 +55,8 @@
   margin-left: 7.5px;
   margin-top: 5px;
   color: black;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
 }
 
 .game-button:hover {

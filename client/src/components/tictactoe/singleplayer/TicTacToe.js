@@ -4,7 +4,7 @@ import Board from './Board';
 const SoloTTT = () => {
   return (
     <div className="app">
-    <Board />
+      <Board />
     </div>
   );
 };
