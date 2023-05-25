@@ -20,8 +20,10 @@ export default function Profile() {
 
   console.log(userData);
 
+  // loop through records to generate stats for each game
   function generateRecords() {
     let recordsArray = [];
+    // check if records exist
     if (userData.records.length) {
       for (let index = 0; index < userData.records.length; index++) {
         recordsArray.push(
@@ -54,8 +56,9 @@ export default function Profile() {
           <h1>Welcome, {userData.username}</h1>
 
           <div className="stats-container">
-            <h2>Your Stats </h2>
+            <h2>Your Solo Stats </h2>
             <br />
+            {/* Iteratively render game records */}
             <ul>{generateRecords()}</ul>
             <button id="logout" onClick={Auth.logout}>
               Log Out
