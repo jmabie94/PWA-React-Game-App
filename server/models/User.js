@@ -21,8 +21,19 @@ const userSchema = new Schema({
   },
   records: [
     {
-      type: Schema.Types.ObjectId,
-      ref: 'record',
+      gameName: {
+        type: String,
+        required: true,
+      },
+      gamesPlayed: {
+        type: Number,
+      },
+      gamesWon: {
+        type: Number,
+      },
+      gamesTied: {
+        type: Number,
+      },
     },
   ],
 });

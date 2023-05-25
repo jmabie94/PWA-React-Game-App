@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Game, Session, Record } = require('../models');
+const { User, Game, Session } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -9,12 +9,6 @@ const resolvers = {
     },
     user: async (_, { username }) => {
       return User.findOne({ username });
-    },
-    records: async () => {
-      return Record.find();
-    },
-    record: async () => {
-      return Record.findOne({ playerId });
     },
     games: async () => {
       return Game.find();
@@ -62,6 +56,20 @@ const resolvers = {
 
       return { token, user };
     },
+
+    createRecord: async (parent, { playerId, gameName }) => {
+      return User.findOneAndUpdate(
+        { _id: playerId },
+        {
+          $addToSet: { records: { gameName } },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    },
+
     addProfile: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
