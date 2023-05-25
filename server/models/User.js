@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { model, Schema } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
@@ -21,15 +21,16 @@ const userSchema = new Schema({
   },
 });
 
+// Pre-save hook to hash the password
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
-
   next();
 });
 
+// Method to compare entered password with the stored hashed password
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };

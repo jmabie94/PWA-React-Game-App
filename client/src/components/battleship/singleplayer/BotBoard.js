@@ -25,7 +25,7 @@ export const BotBoard = ({
     emptyBoardLayout()
   );
 
-  //  Add hits dealt by player
+  //  hits by player
   compLayout = hitsByPlayer.reduce(
     (prevLayout, currentHit) =>
       shipLayout(prevLayout, currentHit, currentHit.type),
@@ -40,7 +40,6 @@ export const BotBoard = ({
     compLayout
   );
 
-  // Check what's at the square and decide what next
   const sendHits = (index) => {
     if (compLayout[index] === 'ship') {
       const newHits = [
@@ -77,7 +76,7 @@ export const BotBoard = ({
   let compSquares = compLayout.map((square, index) => {
     return (
       <div
-        // Only display square if it's a hit, miss, or sunk ship
+        // show hit,miss, or sunk
         className={
           boardClass[square] === 'hit' ||
           boardClass[square] === 'miss' ||

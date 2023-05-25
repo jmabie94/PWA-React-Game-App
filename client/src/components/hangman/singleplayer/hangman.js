@@ -9,9 +9,18 @@ import hangman6 from '../../images/hangmanIMG/hangman6.png';
 import './style.css';
 
 const images = [hangman1, hangman2, hangman3, hangman4, hangman5, hangman6];
-const words = ['javascript', 'hangman', 'programming', 
-              'computer', 'internet', 'technology',
-              'HTML', 'CSS', 'database', 'mongodb'];
+const words = [
+  'javascript',
+  'hangman',
+  'programming',
+  'computer',
+  'internet',
+  'technology',
+  'HTML',
+  'CSS',
+  'database',
+  'mongodb',
+];
 
 const SoloHangman = () => {
   const [chosenWord, setChosenWord] = useState('');
@@ -51,15 +60,15 @@ const SoloHangman = () => {
   const displayLetters = () => {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const sortedAlphabet = alphabet.split('').sort();
-  
+
     const rows = [[], [], []];
     const lettersPerRow = Math.ceil(sortedAlphabet.length / 3);
-  
+
     sortedAlphabet.forEach((letter, index) => {
       const rowIndex = Math.floor(index / lettersPerRow);
       rows[rowIndex].push(letter);
     });
-  
+
     return (
       <>
         {rows.map((row, index) => (
@@ -67,8 +76,13 @@ const SoloHangman = () => {
             {row.map((letter) => (
               <button
                 key={letter}
-                className={`letter-btn ${guessedLetters.includes(letter) ? 'guessed' : ''} ${wrongLetters.includes(letter) ? 'wrong' : ''}`}
-                disabled={wrongLetters.includes(letter) || guessedLetters.includes(letter)}
+                className={`letter-btn ${
+                  guessedLetters.includes(letter) ? 'guessed' : ''
+                } ${wrongLetters.includes(letter) ? 'wrong' : ''}`}
+                disabled={
+                  wrongLetters.includes(letter) ||
+                  guessedLetters.includes(letter)
+                }
                 onClick={() => handleLetterClick(letter)}
               >
                 {letter}
@@ -79,8 +93,6 @@ const SoloHangman = () => {
       </>
     );
   };
-  
-  
 
   const updateHangmanImage = () => {
     const numWrong = wrongLetters.length;

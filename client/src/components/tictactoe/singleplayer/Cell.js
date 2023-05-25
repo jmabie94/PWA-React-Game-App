@@ -1,4 +1,4 @@
-import "./solo.css";
+import './solo.css';
 
 const Cell = ({ handleCellClick, id, text }) => {
   return (
