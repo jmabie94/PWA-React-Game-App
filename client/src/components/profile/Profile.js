@@ -18,8 +18,6 @@ export default function Profile() {
   });
   const userData = data?.user || error;
 
-  console.log(userData);
-
   // loop through records to generate stats for each game
   function generateRecords() {
     let recordsArray = [];
