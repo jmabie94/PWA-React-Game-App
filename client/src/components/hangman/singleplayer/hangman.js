@@ -44,16 +44,19 @@ const SoloHangman = () => {
   };
 
   const updateWordText = () => {
-    const underline = '_';
-    const updatedWordText = chosenWord
+    if (chosenWord !== ''){
+      const underline = '_';
+      const updatedWordText = chosenWord
+
       .split('')
       .map((letter) => (guessedLetters.includes(letter) ? letter : underline))
       .join(' ');
-
-    setWordText(updatedWordText);
-
-    if (updatedWordText === chosenWord) {
-      setMessage('Congratulations! You won!');
+      
+      setWordText(updatedWordText);
+      
+      if (updatedWordText.replace(/\s/g, '') === chosenWord) {
+        setMessage('Congratulations! You won!');
+      }
     }
   };
 
@@ -99,7 +102,7 @@ const SoloHangman = () => {
     const imageIndex = Math.min(numWrong, images.length - 1);
     setHangmanImage(images[imageIndex]);
 
-    if (numWrong === 6) {
+    if (numWrong === 5) {
       setMessage(`You lost! The word was "${chosenWord}".`);
     }
   };
