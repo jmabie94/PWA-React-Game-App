@@ -2,7 +2,7 @@ import './signup.css';
 import AuthService from '../../utils/auth.js';
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { CREATE_PROFILE } from '../../utils/mutations.js';
+import { CREATE_USER } from '../../utils/mutations.js';
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -10,7 +10,7 @@ const Signup = () => {
     email: '',
     password: '',
   });
-  const [signup] = useMutation(CREATE_PROFILE);
+  const [signup] = useMutation(CREATE_USER);
 
   const handleSignupSubmit = async (event) => {
     event.preventDefault();
