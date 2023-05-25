@@ -14,7 +14,7 @@ const Board = () => {
     if (!playerTurn && winner === '' && !isGameEnded) {
       makeBotMove();
     }
-  }, [board, playerTurn, winner, isGameEnded]);
+  }, [board, playerTurn, winner]);
   //checkwinner,makebotmove eslint
 
   const handleCellClick = (index) => {
