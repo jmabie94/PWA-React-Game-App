@@ -28,23 +28,12 @@ export default function Profile() {
           <li>
             <h3>{userData.records[index].gameName}</h3>
             <ul>
-              <li>
-                Games Played:
-                {userData.records[index].gamesPlayed}
-              </li>
-              <li>
-                Games Won:
-                {userData.records[index].gamesWon}
-              </li>
-              <li>
-                Games Lost:
-                {userData.records[index].gamesLost}
-              </li>
-              <li>
-                Games Tied:
-                {userData.records[index].gamesTied}
-              </li>
+              <li>Games Played: {userData.records[index].gamesPlayed}</li>
+              <li>Games Won: {userData.records[index].gamesWon}</li>
+              <li>Games Lost: {userData.records[index].gamesLost}</li>
+              <li>Games Tied: {userData.records[index].gamesTied}</li>
             </ul>
+            <br />
           </li>
         );
       }
@@ -66,6 +55,7 @@ export default function Profile() {
 
           <div className="stats-container">
             <h2>Your Stats </h2>
+            <br />
             <ul>{generateRecords()}</ul>
             <button id="logout" onClick={Auth.logout}>
               Log Out
