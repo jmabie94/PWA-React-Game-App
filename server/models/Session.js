@@ -1,4 +1,4 @@
-const { Schema, model, Types } = require('mongoose');
+const { model, Schema } = require('mongoose');
 const dateFormat = require('../utils/helpers');
 
 const sessionSchema = new Schema({
@@ -29,6 +29,15 @@ const sessionSchema = new Schema({
       },
       winner: {
         type: Boolean,
+        required: true,
+      },
+    },
+  ],
+  spectators: [
+    {
+      spectatorId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
         required: true,
       },
     },

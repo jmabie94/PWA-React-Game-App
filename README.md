@@ -91,7 +91,7 @@ Finally, the application should open automatically in your browser!
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ​
 MIT License
-Copyright (c) [2023] [The Five Loopers]
+Copyright (c) [2023] [Programmers With Attitude]
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights

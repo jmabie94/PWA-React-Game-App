@@ -4,12 +4,19 @@ import './profile.css';
 import Auth from '../../utils/auth';
 import { useQuery } from '@apollo/client';
 
-import { GET_ME } from '../../utils/queries';
+import { GET_USER_BY_EMAIL } from '../../utils/queries';
 
 export default function Profile() {
-  const { loading, data } = useQuery(GET_ME);
-  console.log('data = ', data);
-  const userData = data?.me || {};
+  // const { loading, data } = useQuery(GET_ME);
+  // console.log('data = ', data);
+  // const userData = data?.me || {};
+  // need to get ID rather than email from localStorage
+  const email = localStorage.getItem('email'); //using as an example until login implementation works
+
+  const { loading, data, error } = useQuery(GET_USER_BY_EMAIL, {
+    variables: { email },
+  });
+  const userData = data?.user || error;
 
   console.log(userData);
 
@@ -33,7 +40,9 @@ export default function Profile() {
               <li></li>
             </ul>
 
-            <button onClick={Auth.logout}>Log Out</button>
+            <button id="logout" onClick={Auth.logout}>
+              Log Out
+            </button>
           </div>
         </>
       ) : (

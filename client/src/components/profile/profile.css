@@ -1,9 +1,17 @@
 .stats-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 li {
-    color: black;
+  color: black;
+}
+
+#logout {
+  background-color: red;
+}
+
+#logout:hover {
+  background-color: rgb(179, 0, 0);
 }
