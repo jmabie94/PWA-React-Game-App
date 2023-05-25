@@ -49,7 +49,9 @@ const typeDefs = gql`
     game(gameId: String!): Game
     sessions(gameId: String!): [Session]
     session(gameId: String!): Session
+    records: [Record]
     record(playerId: String!): Record
+
     me: User
   }
 
