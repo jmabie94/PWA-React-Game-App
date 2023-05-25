@@ -88,6 +88,7 @@ const Board = () => {
         setIsGameEnded(true);
 
         //update player record (this is happening 3 times currently...)
+        console.log('check winner if statement run');
         try {
           const { data } = updateRecord({
             variables: { playerId, gameName: 'TicTacToe' },
