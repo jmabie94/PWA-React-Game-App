@@ -7,7 +7,7 @@ import Solo from './components/gamepage/mainpage';
 import SoloTTT from './components/tictactoe/singleplayer/TicTacToe';
 // import PvPTTT from './components/tictactoe/multiplayer/TicTacToePvP';
 import SoloHangman from './components/hangman/singleplayer/hangman';
-import Profile from './components/profile/Profile';
+import Profile from './components/profile/NewProfile';
 import SoloChess from './components/chess/singleplayer/Chess';
 import SoloBattleship from './components/battleship/singleplayer/Battleship';
 // import React, { useState } from 'react';

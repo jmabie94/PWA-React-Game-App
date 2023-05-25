@@ -26,8 +26,8 @@ export const CREATE_USER = gql`
 `;
 
 export const CREATE_PROFILE = gql`
-  mutation CreateProfile {
-    createProfile {
+  mutation CreateProfile($userId: ID!) {
+    createProfile(userId: $userId) {
       _id
       user {
         _id

@@ -35,8 +35,32 @@ export const GET_USER = gql`
 export const GET_USER_BY_EMAIL = gql`
   query user($email: String!) {
     user(email: $email) {
+      id
       username
       email
+    }
+  }
+`;
+
+export const GET_USER_PROFILE = gql`
+  query GetUserProfile($userId: ID!) {
+    getUserProfile(userId: $userId) {
+      user {
+        id
+        username
+        email
+        password
+      }
+      gameStats {
+        id
+        game {
+          id
+          name
+        }
+        wins
+        ties
+        losses
+      }
     }
   }
 `;
