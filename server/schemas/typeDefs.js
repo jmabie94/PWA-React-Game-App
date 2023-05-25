@@ -87,7 +87,7 @@ const typeDefs = gql`
     getBoard(id: ID!): Board
     getSession(id: ID!): Session
     getMessages: [Message!]!
-    getLeaderboard: [GameStats!]!
+    getLeaderBoard: [GameStats!]!
     getAllGames: [Game!]!
     getAllUsers: [User!]!
   }

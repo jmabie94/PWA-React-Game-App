@@ -3,41 +3,32 @@
 // going to need a refactored version which makes the game two player for the ChessboardPvP file
 // missing functionality to announce victory and which user has won, also missing warning for players in checkmate
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './solo.css';
 import Header from './header';
 import Chess from 'chess.js';
 import { Chessboard } from 'react-chessboard';
 
-// I don't think any of the rightClicked stuff is needed
+// Refactor from scratch!
 const ChessGame = () => {
-  // changed game, setGame to board, setBoard to match TicTacToe formatting (thinking of db queries)
-  const [board, setBoard] = useState(new Chess());
-  const [moveFrom, setMoveFrom] = useState('');
-  //   const [rightClickedSquares, setRightClickedSquares] = useState({});
+  const [game, setGame] = useState(new Chess());
+  const [moveFrom, setMoveFrom] = useState("");
+  const [rightClickedSquares, setRightClickedSquares] = useState({});
   const [moveSquares, setMoveSquares] = useState({});
   const [optionSquares, setOptionSquares] = useState({});
-  const [playerTurn, setPlayerTurn] = useState(true);
-  const [isGameEnded, setIsGameEnded] = useState(false);
+  const [playerTurn, setPlayerTurn] = useState("white");
   const [winner, setWinner] = useState('');
 
-  useEffect(() => {
-    checkWinner();
-    if (!playerTurn && winner === '' && !isGameEnded) {
-      makeBotMove();
-    }
-  }, [board, playerTurn, winner, isGameEnded]);
-
-  const safeMutation = (change) => {
-    setBoard((g) => {
+  function safeGameMutate(modify) {
+    setGame((g) => {
       const update = { ...g };
-      change(update);
+      modify(update);
       return update;
     });
-  };
+  }
 
-  const legalMoves = (square) => {
-    const moves = board.moves({
+  function getMoveOptions(square) {
+    const moves = game.moves({
       square,
       verbose: true,
     });
@@ -46,181 +37,163 @@ const ChessGame = () => {
     }
 
     const newSquares = {};
-
     moves.map((move) => {
       newSquares[move.to] = {
         background:
-          board.get(move.to) &&
-          board.get(move.to).color !== board.get(square).color
-            ? 'radial-gradient(circle, rgba(0,0,0,.2) 75%, transparent 75%'
-            : 'radial-gradient(circle, rgba(0,0,0,.2) 30%, transparent 30%',
-        borderRadius: '25%',
+          game.get(move.to) && game.get(move.to).color !== game.get(square).color
+            ? "radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%)"
+            : "radial-gradient(circle, rgba(0,0,0,.1) 25%, transparent 25%)",
+        borderRadius: "50%",
       };
       return move;
     });
-
     newSquares[square] = {
-      background: 'rgba(225, 225, 0, 0.5)',
+      background: "rgba(255, 255, 0, 0.4)",
     };
-
     setOptionSquares(newSquares);
     return true;
-  };
+  }
 
-  const checkWinner = () => {
-    if (playerTurn && !legalMoves()) {
-      setIsGameEnded(true);
-      setWinner('Computer');
+  function makeRandomMove() {
+    const possibleMoves = game.moves();
+
+    // exit if the game is over
+    // if (game.game_over() || game.in_draw() || possibleMoves.length === 0) return;
+    if (game.game_over()) {
+      setWinner("white");
+      console.log("winner = ", winner);
       return;
-    } else if (!playerTurn && !legalMoves()) {
-      setIsGameEnded(true);
-      setWinner('Player 1');
-    }
-  };
-
-  const makeBotMove = () => {
-    const possibleMoves = board.moves();
-
-    // need to add a function for displaying checkmate that checks for possibleMoves.length === 1
-    if (
-      board.game_over() ||
-      board.in_draw() ||
-      possibleMoves.length === 0 ||
-      isGameEnded
-    ) {
-      setIsGameEnded(true);
+    } else if (game.in_draw()) {
+      setWinner("draw");
+      return;
+    } else if (possibleMoves.length === 0) {
+      setWinner("white");
       return;
     }
-    // need add functionality to display the winning user whenever the game ends, similar to TicTacToe
+    console.log("winner = ", winner);
 
     const randomIndex = Math.floor(Math.random() * possibleMoves.length);
-    safeMutation((board) => {
-      board.move(possibleMoves[randomIndex]);
+    safeGameMutate((game) => {
+      game.move(possibleMoves[randomIndex]);
     });
 
-    setIsGameEnded(false);
-    setPlayerTurn(true);
-  };
+    setPlayerTurn("white");
+  }
 
-  const onSquareClick = (square) => {
-    // setRightClickedSquares({});
+  function onSquareClick(square) {
+    setRightClickedSquares({});
+    const possibleMoves = game.moves();
 
-    const resetFirstMove = (square) => {
-      const hasOptions = legalMoves(square);
-      if (hasOptions) {
-        setMoveFrom(square);
-      }
-    };
+    if (game.game_over()) {
+      setWinner("black");
+      console.log("winner = ", winner);
+      return;
+    } else if (game.in_draw()) {
+      setWinner("draw");
+      return;
+    } else if (possibleMoves.length === 0) {
+      setWinner("black");
+      return;
+    }
+    console.log("winner = ", winner);
 
+    function resetFirstMove(square) {
+      const hasOptions = getMoveOptions(square);
+      if (hasOptions) setMoveFrom(square);
+    }
+
+    // from square
     if (!moveFrom) {
       resetFirstMove(square);
       return;
     }
 
-    const gameCopy = { ...board };
+    // attempt to make move
+    const gameCopy = { ...game };
     const move = gameCopy.move({
       from: moveFrom,
       to: square,
-      promotion: 'q',
+      promotion: "q", // always promote to a queen for example simplicity
     });
+    setGame(gameCopy);
 
-    setBoard(gameCopy);
-
+    // if invalid, setMoveFrom and getMoveOptions
     if (move === null) {
       resetFirstMove(square);
       return;
     }
 
-    setTimeout(makeBotMove, 850);
-    setMoveFrom('');
+    setPlayerTurn("black");
+    setTimeout(makeRandomMove, 300);
+    setMoveFrom("");
     setOptionSquares({});
-    setPlayerTurn(!playerTurn);
-  };
+  }
 
-  //   const onSquareRightClick = (square) => {
-  //     const color = 'rgba (0, 0, 225, 0.5)';
-  //     setRightClickedSquares({
-  //       ...rightClickedSquares,
-  //       [square]:
-  //         rightClickedSquares[square] &&
-  //         rightClickedSquares[square].backgroundColor === color
-  //           ? undefined
-  //           : { backgroundColor: color },
-  //     });
-  //   };
+  function onSquareRightClick(square) {
+    const colour = "rgba(0, 0, 255, 0.4)";
+    setRightClickedSquares({
+      ...rightClickedSquares,
+      [square]:
+        rightClickedSquares[square] &&
+          rightClickedSquares[square].backgroundColor === colour
+          ? undefined
+          : { backgroundColor: colour },
+    });
+  }
 
   return (
     <main>
       <Header />
-      <section className="chessboard-section">
-        <div
-          style={{
-            margin: '3rem auto',
-            maxWidth: '70vh',
-            width: '70vw',
-          }}
+      <section className='chessboard-section'>
+        <div style={{
+          margin: '3ren auto',
+          maxWidth: '70vh',
+          width: '70vw'
+        }}
         >
           <Chessboard
             id="ClickToMove"
             animationDuration={200}
             arePiecesDraggable={false}
-            showBoardNotation={true}
-            position={board.fen()}
+            position={game.fen()}
             onSquareClick={onSquareClick}
-            // onSquareRightClick={onSquareRightClick}
+            onSquareRightClick={onSquareRightClick}
             customBoardStyle={{
-              borderRadius: '4px',
-              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+              borderRadius: "4px",
+              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.5)",
             }}
             customSquareStyles={{
               ...moveSquares,
               ...optionSquares,
-              // ...rightClickedSquares,
+              ...rightClickedSquares,
+            }}
+          />
+          <button
+            className='button'
+            onClick={() => {
+              safeGameMutate((game) => {
+                game.reset();
+              });
+              setMoveSquares({});
+              setRightClickedSquares({});
             }}
           >
-            <button
-              style={{
-                width: '100px',
-                height: '100px',
-              }}
-              onClick={() => {
-                safeMutation((board) => {
-                  board.reset();
-                });
-                setMoveSquares({});
-                // setRightClickedSquares({});
-              }}
-            >
-              Reset
-            </button>
-            <button
-              style={{
-                width: '100px',
-                height: '100px',
-              }}
-              onClick={() => {
-                safeMutation((board) => {
-                  board.undo();
-                });
-                setMoveSquares({});
-                // setRightClickedSquares({});
-              }}
-            >
-              Undo
-            </button>
-          </Chessboard>
+            Reset
+          </button>
+          <button
+            className='button'
+            onClick={() => {
+              safeGameMutate((game) => {
+                game.undo();
+              });
+              setMoveSquares({});
+              setRightClickedSquares({});
+            }}
+          >
+            Undo
+          </button>
         </div>
       </section>
-
-      {winner && (
-        <div className="winner-message">
-          {winner === 'Computer' ? (
-            <p>You Lost To A {winner}</p>
-          ) : (
-            <p>{winner} won the game!</p>
-          )}
-        </div>
-      )}
     </main>
   );
 };

@@ -1,10 +1,10 @@
 import React from 'react';
 import ChessGamePvP from './ChessboardPvP';
 
-const ChessGamePvP = () => {
+const PvPChess = () => {
   return (
     <div className="app">
-      <Chessboard />
+      <ChessGamePvP />
     </div>
   );
 };

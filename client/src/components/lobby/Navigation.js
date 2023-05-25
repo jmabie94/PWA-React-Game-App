@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import AuthService from '../../utils/auth';
 import { useQuery } from '@apollo/client';
-import { QUERY_SINGLE_USER } from '../../utils/queries.js';
+import { GET_USER } from '../../utils/queries.js';
 import './navigation.css';
 
 const NavigationBar = () => {
+  // need to get ID from localStorage, not email
   const email = localStorage.getItem('email');
 
-  const { loading, data, error } = useQuery(QUERY_SINGLE_USER, {
+  const { loading, data, error } = useQuery(GET_USER, {
     variables: { email },
   });
 
