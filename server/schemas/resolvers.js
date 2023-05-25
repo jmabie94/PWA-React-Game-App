@@ -94,17 +94,30 @@ const resolvers = {
       );
     },
 
-    updateRecord: async (
-      parent,
-      { playerId, gameName, gamesPlayed, gamesWon, gamesTied, gamesLost }
-    ) => {
+    // updateRecord: async (
+    //   parent,
+    //   { playerId, gameName, gamesPlayed, gamesWon, gamesTied, gamesLost }
+    // ) => {
+    //   return User.findOneAndUpdate(
+    //     { _id: playerId, 'records.gameName': gameName },
+    //     {
+    //       'records.$.gamesPlayed': gamesPlayed,
+    //       'records.$.gamesWon': gamesWon,
+    //       'records.$.gamesTied': gamesTied,
+    //       'records.$.gamesLost': gamesLost,
+    //     },
+
+    //     {
+    //       new: true,
+    //       runValidators: true,
+    //     }
+    //   );
+    // },
+    updateRecord: async (parent, { playerId, gameName }) => {
       return User.findOneAndUpdate(
         { _id: playerId, 'records.gameName': gameName },
         {
-          'records.$.gamesPlayed': gamesPlayed,
-          'records.$.gamesWon': gamesWon,
-          'records.$.gamesTied': gamesTied,
-          'records.$.gamesLost': gamesLost,
+          $inc: { 'records.$.gamesPlayed': 1, 'records.$.gamesWon': 1 },
         },
 
         {

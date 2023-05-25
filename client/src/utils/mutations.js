@@ -186,7 +186,7 @@ export const UPDATE_USER_GAME_STATS = gql`
 
 export const CREATE_RECORD = gql`
   mutation createRecord($playerId: String!, $gameName: String!) {
-    createRecord(playerId: $playerId, gameName = $gameName) {
+    createRecord(playerId: $playerId, gameName: $gameName) {
       username
       records {
         gameName
@@ -198,7 +198,7 @@ export const CREATE_RECORD = gql`
       }
     }
   }
-  `;
+`;
 
 export const UPDATE_RECORD = gql`
   mutation updateRecord(
