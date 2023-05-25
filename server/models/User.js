@@ -34,6 +34,9 @@ const userSchema = new Schema({
       gamesTied: {
         type: Number,
       },
+      gamesLost: {
+        type: Number,
+      },
     },
   ],
 });

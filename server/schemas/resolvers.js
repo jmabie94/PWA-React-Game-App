@@ -72,12 +72,15 @@ const resolvers = {
 
     updateRecord: async (
       parent,
-      { playerId, gameName, gamesWon, gamesTied, gamesLost }
+      { playerId, gameName, gamesPlayed, gamesWon, gamesTied, gamesLost }
     ) => {
       return User.findOneAndUpdate(
         { _id: playerId, 'records.gameName': gameName },
         {
+          'records.$.gamesPlayed': gamesPlayed,
           'records.$.gamesWon': gamesWon,
+          'records.$.gamesTied': gamesTied,
+          'records.$.gamesLost': gamesLost,
         },
 
         {

@@ -12,6 +12,7 @@ const typeDefs = gql`
   type Record {
     _id: ID
     gameName: String
+    gamesPlayed: Int
     gamesWon: Int
     gamesLost: Int
     gamesTied: Int
@@ -61,6 +62,7 @@ const typeDefs = gql`
     updateRecord(
       playerId: String!
       gameName: String
+      gamesPlayed: Int
       gamesWon: Int
       gamesTied: Int
       gamesLost: Int
