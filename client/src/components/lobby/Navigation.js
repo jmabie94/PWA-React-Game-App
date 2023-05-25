@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 import AuthService from '../../utils/auth';
 import { useQuery } from '@apollo/client';
-import { GET_USER } from '../../utils/queries.js';
+import { GET_USER_BY_EMAIL } from '../../utils/queries.js';
 import './navigation.css';
 
 const NavigationBar = () => {
   // need to get ID from localStorage, not email
   const email = localStorage.getItem('email');
 
-  const { loading, data, error } = useQuery(GET_USER, {
+  const { loading, data, error } = useQuery(GET_USER_BY_EMAIL, {
     variables: { email },
   });
 
@@ -17,12 +17,12 @@ const NavigationBar = () => {
 
   return (
     <header>
-      <img className="logo" src="/" alt="logo"></img>
       {AuthService.loggedIn() && userData !== undefined ? (
         <h1 id="navh1">Welcome, {userData.username}</h1>
       ) : (
         <h1 id="navh1">Login or sign up to play!</h1>
       )}
+      <img className="logo" src="/" alt="logo"></img>
       <nav>
         <ul className="nav_links">
           <li>

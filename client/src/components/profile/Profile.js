@@ -4,7 +4,7 @@ import './profile.css';
 import Auth from '../../utils/auth';
 import { useQuery } from '@apollo/client';
 
-import { GET_USER } from '../../utils/queries';
+import { GET_USER_BY_EMAIL } from '../../utils/queries';
 
 export default function Profile() {
   // const { loading, data } = useQuery(GET_ME);
@@ -13,7 +13,7 @@ export default function Profile() {
   // need to get ID rather than email from localStorage
   const email = localStorage.getItem('email'); //using as an example until login implementation works
 
-  const { loading, data, error } = useQuery(GET_USER, {
+  const { loading, data, error } = useQuery(GET_USER_BY_EMAIL, {
     variables: { email },
   });
   const userData = data?.user || error;
