@@ -113,6 +113,8 @@ const resolvers = {
     //     }
     //   );
     // },
+
+    // currently just updates gamesPlayed and gamesWon. So not named well right now.
     updateRecord: async (parent, { playerId, gameName }) => {
       return User.findOneAndUpdate(
         { _id: playerId, 'records.gameName': gameName },
