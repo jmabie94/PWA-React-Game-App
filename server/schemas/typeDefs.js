@@ -10,6 +10,7 @@ const typeDefs = gql`
   }
 
   type Record {
+    _id: ID
     gameName: String
     gamesWon: Int
     gamesLost: Int
@@ -57,7 +58,13 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     addProfile(username: String!, email: String!, password: String!): Auth
     createRecord(playerId: String!, gameName: String!): User
-    updateRecord(playerId: String!, gameName: String!): User
+    updateRecord(
+      playerId: String!
+      gameName: String!
+      gamesWon: Int
+      gamesTied: Int
+      gamesLost: Int
+    ): User
     login(email: String!, password: String!): Auth
     createSession(gameId: String!, playerId: String!): Session
     closeSession(sessionId: String!): Session

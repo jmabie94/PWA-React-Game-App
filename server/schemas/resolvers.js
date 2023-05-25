@@ -70,6 +70,20 @@ const resolvers = {
       );
     },
 
+    updateRecord: async (
+      parent,
+      { playerId, gameName, gamesWon, gamesTied, gamesLost }
+    ) => {
+      return User.findOneAndUpdate(
+        { _id: playerId, records: { gameName } },
+        { $set: { gamesWon } },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    },
+
     addProfile: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
