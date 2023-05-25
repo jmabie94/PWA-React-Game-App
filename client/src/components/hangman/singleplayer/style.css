@@ -71,3 +71,12 @@
   background-color: rgb(6, 209, 6);
   color: white;
 }
+
+.hangman-hero {
+  background-image: linear-gradient(rgba(255, 255, 255, 0),
+  rgba(249, 249, 249, 0.5)), url('../../images/hangmanIMG/heroHangman2.jpg');
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  margin-top: -55px;
+}
