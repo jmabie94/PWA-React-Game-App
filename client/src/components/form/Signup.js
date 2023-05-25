@@ -2,7 +2,7 @@ import './signup.css';
 import AuthService from '../../utils/auth.js';
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { CREATE_PROFILE } from '../../utils/mutations.js';
+import { CREATE_USER } from '../../utils/mutations.js';
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -10,19 +10,18 @@ const Signup = () => {
     email: '',
     password: '',
   });
-  const [signup] = useMutation(CREATE_PROFILE);
+  const [signUp, {error, data }] = useMutation(CREATE_USER);
 
   const handleSignupSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
     try {
-      const { data } = await signup({
+      const { data } = await signUp({
         variables: { ...formState },
       });
+      
       console.log(data);
-      console.log(data.addProfile);
-
-      AuthService.login(data.addProfile.token);
+      AuthService.login(data.createUser.token);
       if (localStorage.getItem('email') !== null) {
         localStorage.removeItem('email');
         localStorage.setItem('email', formState.email);
