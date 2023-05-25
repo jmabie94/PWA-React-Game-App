@@ -27,7 +27,6 @@ export const emptyBoardLayout = () => {
   return new Array(BOARD_ROWS * BOARD_COLUMNS).fill(BOARD_STATE.empty);
 };
 
-
 export const coordsToIndex = (coordinates) => {
   const { x, y } = coordinates;
 
@@ -48,7 +47,8 @@ export const entityIndices = (entity) => {
 
   for (let i = 0; i < entity.length; i++) {
     indices.push(position);
-    position = entity.orientation === 'vertical' ? position + BOARD_ROWS : position + 1;
+    position =
+      entity.orientation === 'vertical' ? position + BOARD_ROWS : position + 1;
   }
 
   return indices;
@@ -131,7 +131,7 @@ export const calculateOverhang = (entity) =>
 export const canBePlaced = (entity, layout) =>
   isWithinBounds(entity) && isPlaceFree(entity, layout);
 
-// random ship placement generated 
+// random ship placement generated
 export const placeAllBotShips = (botShips) => {
   let compLayout = emptyBoardLayout();
 
@@ -167,7 +167,6 @@ export const randomizeShipProps = (ship) => {
   };
 };
 
-
 export const placeCompShipInLayout = (ship, compLayout) => {
   let newCompLayout = compLayout.slice();
 
@@ -186,7 +185,6 @@ export const getNearby = (coords) => {
 
   let neighbors = [];
 
-
   if (firstRow) {
     neighbors.push(
       { x: coords.x + 1, y: coords.y },
@@ -202,29 +200,29 @@ export const getNearby = (coords) => {
       { x: coords.x, y: coords.y - 1 }
     );
   }
-  
+
   if (firstColumn) {
     neighbors.push(
-      { x: coords.x + 1, y: coords.y }, 
-      { x: coords.x, y: coords.y + 1 }, 
-      { x: coords.x, y: coords.y - 1 } 
+      { x: coords.x + 1, y: coords.y },
+      { x: coords.x, y: coords.y + 1 },
+      { x: coords.x, y: coords.y - 1 }
     );
   }
 
   if (lastColumn) {
     neighbors.push(
-      { x: coords.x - 1, y: coords.y }, 
-      { x: coords.x, y: coords.y + 1 }, 
-      { x: coords.x, y: coords.y - 1 } 
+      { x: coords.x - 1, y: coords.y },
+      { x: coords.x, y: coords.y + 1 },
+      { x: coords.x, y: coords.y - 1 }
     );
   }
 
   if (!lastColumn || !firstColumn || !lastRow || !firstRow) {
     neighbors.push(
-      { x: coords.x - 1, y: coords.y }, 
-      { x: coords.x + 1, y: coords.y }, 
-      { x: coords.x, y: coords.y - 1 }, 
-      { x: coords.x, y: coords.y + 1 } 
+      { x: coords.x - 1, y: coords.y },
+      { x: coords.x + 1, y: coords.y },
+      { x: coords.x, y: coords.y - 1 },
+      { x: coords.x, y: coords.y + 1 }
     );
   }
 
@@ -239,7 +237,7 @@ export const getNearby = (coords) => {
   return filteredResult;
 };
 
-// updates sunked ships 
+// updates sunked ships
 export const Sunked = (currentHits, opponentShips) => {
   let playerHitIndices = currentHits.map((hit) => coordsToIndex(hit.position));
 

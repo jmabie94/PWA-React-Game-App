@@ -75,7 +75,6 @@ const typeDefs = gql`
     user: User
   }
 
-  
   type Query {
     getUser(id: ID!): User
     user(email: String!): User
@@ -87,7 +86,7 @@ const typeDefs = gql`
     getAllGames: [Game!]!
     getAllUsers: [User!]!
   }
-  
+
   type Mutation {
     createUser(username: String!, email: String!, password: String!): Auth
     createProfile: Profile
@@ -101,27 +100,27 @@ const typeDefs = gql`
       whoseTurn: ID
       isGameOver: Boolean
       winner: ID
-      ): Board!
-      updateGameStats(userId: ID!, gameId: ID!, result: String!): GameStats!
-      updateUserGameStats(userId: ID!, gameStatsId: ID!): UserGameStats!
-    }
+    ): Board!
+    updateGameStats(userId: ID!, gameId: ID!, result: String!): GameStats!
+    updateUserGameStats(userId: ID!, gameStatsId: ID!): UserGameStats!
+  }
 
   type Subscription {
     messageAdded(chatId: ID!): Message!
     boardUpdated(boardId: ID!): Board!
     leaderboardUpdated: [GameStats!]!
   }
-  
+
   schema {
     query: Query
     mutation: Mutation
     subscription: Subscription
   }
-  `;
-  
-  module.exports = typeDefs;
-  
-  /* input CreateUserInput {
+`;
+
+module.exports = typeDefs;
+
+/* input CreateUserInput {
     username: String!
     email: String!
     password: String!

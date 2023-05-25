@@ -84,7 +84,9 @@ export default function SoloBattleship() {
       setCurrentlyPlacing({
         ...currentlyPlacing,
         orientation:
-          currentlyPlacing.orientation === 'vertical' ? 'horizontal' : 'vertical',
+          currentlyPlacing.orientation === 'vertical'
+            ? 'horizontal'
+            : 'vertical',
       });
     }
   };
@@ -198,9 +200,12 @@ export default function SoloBattleship() {
 
   // Check if either player or bot ended the game
   const checkIfGameOver = () => {
-    let successfulPlayerHits = hitsByPlayer.filter((hit) => hit.type === 'hit').length;
-    let successfulbotHits = hitsByBot.filter((hit) => hit.type === 'hit')
-      .length;
+    let successfulPlayerHits = hitsByPlayer.filter(
+      (hit) => hit.type === 'hit'
+    ).length;
+    let successfulbotHits = hitsByBot.filter(
+      (hit) => hit.type === 'hit'
+    ).length;
 
     if (successfulbotHits === 17 || successfulPlayerHits === 17) {
       setGameState('game-over');
@@ -229,7 +234,6 @@ export default function SoloBattleship() {
     setHitsByBot([]);
   };
 
-
   return (
     <Board
       availableShips={availableShips}
@@ -254,5 +258,4 @@ export default function SoloBattleship() {
       setBotShips={setBotShips}
     />
   );
-};
-
+}

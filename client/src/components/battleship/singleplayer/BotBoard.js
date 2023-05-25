@@ -17,7 +17,6 @@ export const BotBoard = ({
   checkIfGameOver,
   setBotShips,
 }) => {
-  
   // ships on empty board
   let compLayout = botShips.reduce(
     (prevLayout, currentShip) =>
@@ -90,7 +89,9 @@ export const BotBoard = ({
           if (playerCanFire && !alreadyHit(index)) {
             const newHits = sendHits(index);
             const shipsWithSunkFlag = Sunked(newHits, botShips);
-            const sunkShipsAfter = shipsWithSunkFlag.filter((ship) => ship.sunk).length;
+            const sunkShipsAfter = shipsWithSunkFlag.filter(
+              (ship) => ship.sunk
+            ).length;
             const sunkShipsBefore = botShips.filter((ship) => ship.sunk).length;
             if (sunkShipsAfter > sunkShipsBefore) {
             }

@@ -4,7 +4,7 @@
 
 #### React Game with React Chat -- needs more detailed description
 
-#### Due to difficulties we had to start over with a new repository, this is part of an attempt at refactoring the original starting repository: https://github.com/apostlex11/PWA-PROJECT 
+#### Due to difficulties we had to start over with a new repository, this is part of an attempt at refactoring the original starting repository: https://github.com/apostlex11/PWA-PROJECT
 
 ---
 
@@ -88,6 +88,7 @@ Finally, the application should open automatically in your browser!
     - Other stuff
 
 ## License
+
 ​
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ​

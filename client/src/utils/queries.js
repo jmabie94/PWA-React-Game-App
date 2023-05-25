@@ -33,12 +33,12 @@ export const GET_USER = gql`
 `;
 
 export const GET_USER_BY_EMAIL = gql`
-query user($email: String!) {
-  user(email: $email) {
-    username
-    email
+  query user($email: String!) {
+    user(email: $email) {
+      username
+      email
+    }
   }
-}
 `;
 
 export const GET_GAME = gql`

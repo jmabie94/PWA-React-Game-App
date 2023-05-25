@@ -9,7 +9,7 @@ import Chess from 'chess.js';
 import { Chessboard } from 'react-chessboard';
 
 const ChessGamePvP = () => {
-// need to refactor from scratch once I have solo working
+  // need to refactor from scratch once I have solo working
 };
 
 export default ChessGamePvP;
