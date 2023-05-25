@@ -10,6 +10,7 @@ import Chess from 'chess.js';
 import { Chessboard } from 'react-chessboard';
 
 // Refactor from scratch!
+// use localstorage or put/get to graphql to register wins and losses
 const ChessGame = () => {
   const [game, setGame] = useState(new Chess());
   const [moveFrom, setMoveFrom] = useState("");
@@ -59,14 +60,14 @@ const ChessGame = () => {
 
     // exit if the game is over
     // if (game.game_over() || game.in_draw() || possibleMoves.length === 0) return;
-    if (game.game_over()) {
+    if (game.game_over() && winner === '') {
       setWinner("white");
       console.log("winner = ", winner);
       return;
-    } else if (game.in_draw()) {
+    } else if (game.in_draw() && winner === '') {
       setWinner("draw");
       return;
-    } else if (possibleMoves.length === 0) {
+    } else if (possibleMoves.length === 0 && winner === '') {
       setWinner("white");
       return;
     }
@@ -84,14 +85,14 @@ const ChessGame = () => {
     setRightClickedSquares({});
     const possibleMoves = game.moves();
 
-    if (game.game_over()) {
+    if (game.game_over() && winner === '') {
       setWinner("black");
       console.log("winner = ", winner);
       return;
-    } else if (game.in_draw()) {
+    } else if (game.in_draw() && winner === '') {
       setWinner("draw");
       return;
-    } else if (possibleMoves.length === 0) {
+    } else if (possibleMoves.length === 0 && winner === '') {
       setWinner("black");
       return;
     }
@@ -176,6 +177,7 @@ const ChessGame = () => {
               });
               setMoveSquares({});
               setRightClickedSquares({});
+              setWinner('');
             }}
           >
             Reset
@@ -188,12 +190,30 @@ const ChessGame = () => {
               });
               setMoveSquares({});
               setRightClickedSquares({});
+              setWinner('');
             }}
           >
             Undo
           </button>
         </div>
       </section>
+      {winner && (
+        <div className="winner-message">
+          {winner === 'Draw' ? (
+            <p>It's a draw!</p>
+          ) : (
+            <p>{winner} won the game!</p>
+          )}
+          <button onClick={() => {
+            safeGameMutate((game) => {
+              game.reset();
+            });
+            setMoveSquares({});
+            setRightClickedSquares({});
+            setWinner('');
+          }}>Reset</button>
+        </div>
+      )}
     </main>
   );
 };
