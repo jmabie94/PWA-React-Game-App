@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import './solo.css';
 import Header from './header';
-import Chess from './Chess.js';
+import Chess from 'chess.js';
 import { Chessboard } from 'react-chessboard';
 
 // Refactor from scratch!
