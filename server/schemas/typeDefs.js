@@ -1,46 +1,73 @@
 const { gql } = require('apollo-server-express');
 
-// refactoring "game", adding stuff
-// currently all the new resolvers and typedefs are specific to tictactoe, need to go through and update everything so that they are labeled in a way which is specific to tictactoe, then create parallel ones to use for chess, and import those into the correct files
 const typeDefs = gql`
   type User {
-    _id: ID
-    username: String
-    email: String
-    password: String
-  }
-
-  type Session {
-    _id: ID
-    gameId: String
-    startTime: String
-    endTime: String
-    players: [Player]
+    id: ID!
+    username: String!
+    email: String!
+    password: String!
+    gameStats: [GameStats!]!
+    profile: Profile
   }
 
   type Game {
     id: ID!
-    name: String
-    board: [String!]!
-    playerTurn: Boolean!
-    winner: String
-    isGameEnded: Boolean!
+    name: String!
+    boards: [Board!]!
+  }
+
+  type Board {
+    id: ID!
+    gameId: ID!
+    users: [User!]!
+    whoseTurn: ID
+    isGameOver: Boolean!
+    winner: ID
+    chat: Chat
   }
 
   type Message {
-    text: String
-    createdBy: String
+    id: ID!
+    text: String!
+    user: User!
   }
 
-  input MessageInput {
-    text: String
-    username: String
+  type Chat {
+    id: ID!
+    gameId: ID!
+    messages: [Message!]!
+  }
+
+  type Session {
+    id: ID!
+    gameId: ID!
+    players: [Player!]!
+    spectators: [User!]!
   }
 
   type Player {
-    playerId: ID
-    score: Int
-    winner: Boolean
+    playerId: ID!
+    score: Int!
+    winner: Boolean!
+  }
+
+  type GameStats {
+    id: ID!
+    game: Game!
+    wins: Int!
+    losses: Int!
+  }
+
+  type UserGameStats {
+    id: ID!
+    user: User!
+    gameStats: GameStats!
+  }
+
+  type Profile {
+    id: ID!
+    user: User!
+    gameStats: [GameStats]!
   }
 
   type Auth {
@@ -48,30 +75,51 @@ const typeDefs = gql`
     user: User
   }
 
+  input CreateUserInput {
+    username: String!
+    email: String!
+    password: String!
+  }
+
   type Query {
-    users: [User]
-    user(email: String!): User
-    games: [Game]
-    game(gameId: String!): Game!
-    sessions(gameId: String!): [Session]
-    session(gameId: String!): Session
-    me: User
+    getUser(id: ID!): User
+    getGame(id: ID!): Game
+    getBoard(id: ID!): Board
+    getSession(id: ID!): Session
+    getMessages: [Message!]!
+    getLeaderboard: [GameStats!]!
+    getAllGames: [Game!]!
+    getAllUsers: [User!]!
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
-    addProfile(username: String!, email: String!, password: String!): Auth
+    createUser(input: CreateUserInput!): Auth
+    createProfile: Profile
     login(email: String!, password: String!): Auth
-    createMessage(messageInput: MessageInput): Message!
-    createSession(gameId: String!, playerId: String!): Session
-    closeSession(sessionId: String!): Session
-    makeMove(index: Int!): Game!
-    resetGame: Game!
+    createGame(name: String!): Game!
+    createBoard(gameId: ID!, userIds: [ID!]!): Board!
+    createSession(gameId: ID!, userIds: [ID!]!, spectatorIds: [ID!]): Session!
+    createMessage(text: String!, userId: ID!): Message!
+    updateBoard(
+      boardId: ID!
+      whoseTurn: ID
+      isGameOver: Boolean
+      winner: ID
+    ): Board!
+    updateGameStats(userId: ID!, gameId: ID!, result: String!): GameStats!
+    updateUserGameStats(userId: ID!, gameStatsId: ID!): UserGameStats!
   }
 
   type Subscription {
-    messageCreated: Message
-    gameStateUpdated: Game!
+    messageAdded(chatId: ID!): Message!
+    boardUpdated(boardId: ID!): Board!
+    leaderboardUpdated: [GameStats!]!
+  }
+
+  schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
   }
 `;
 

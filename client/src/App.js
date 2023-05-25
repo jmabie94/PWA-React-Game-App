@@ -5,8 +5,10 @@ import NavigationBar from './components/lobby/Navigation';
 // import TTT from './components/tictactoe/multiplayer/TicTacToe';
 import Solo from './components/gamepage/mainpage';
 import SoloTTT from './components/tictactoe/singleplayer/TicTacToe';
+import PvPTTT from './components/tictactoe/multiplayer/TicTacToePvP';
 import SoloHangman from './components/hangman/singleplayer/hangman';
 import Profile from './components/profile/Profile';
+import SoloChess from './components/chess/singleplayer/Chess';
 // import React, { useState } from 'react';
 
 // websocket for graphql subscriptions?
@@ -89,8 +91,9 @@ export default function App() {
           <Route path="/" element={<FormContainer />} />
           <Route path="/games" element={<Solo />} />
           <Route path="/soloTTT" element={<SoloTTT />} />
-          {/* <Route path="/onlineTTT" element={<TTT />} /> */}
+          <Route path="/PvPTTT" element={<PvPTTT />} />
           <Route path="/soloHangman" element={<SoloHangman />} />
+          <Route path="/SoloChess" element={<SoloChess />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>

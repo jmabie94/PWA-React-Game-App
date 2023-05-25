@@ -6,7 +6,7 @@
 import React, { useEffect, useState } from 'react';
 import './solo.css';
 import Header from './header';
-import { Chess } from 'chess.js';
+import Chess from 'chess.js';
 import { Chessboard } from 'react-chessboard';
 
 // I don't think any of the rightClicked stuff is needed
@@ -19,7 +19,7 @@ const ChessGame = () => {
   const [optionSquares, setOptionSquares] = useState({});
   const [playerTurn, setPlayerTurn] = useState(true);
   const [isGameEnded, setIsGameEnded] = useState(false);
-  const [winner, setWinner] = userState('');
+  const [winner, setWinner] = useState('');
 
   useEffect(() => {
     checkWinner();
@@ -153,13 +153,19 @@ const ChessGame = () => {
     <main>
       <Header />
       <section className="chessboard-section">
-        <div style={boardWrapper}>
+        <div
+          style={{
+            margin: '3rem auto',
+            maxWidth: '70vh',
+            width: '70vw',
+          }}
+        >
           <Chessboard
             id="ClickToMove"
             animationDuration={200}
             arePiecesDraggable={false}
             showBoardNotation={true}
-            position={game.fen()}
+            position={board.fen()}
             onSquareClick={onSquareClick}
             // onSquareRightClick={onSquareRightClick}
             customBoardStyle={{
@@ -169,11 +175,14 @@ const ChessGame = () => {
             customSquareStyles={{
               ...moveSquares,
               ...optionSquares,
-              ...rightClickedSquares,
+              // ...rightClickedSquares,
             }}
           >
             <button
-              style={buttonStyle}
+              style={{
+                width: '100px',
+                height: '100px',
+              }}
               onClick={() => {
                 safeMutation((board) => {
                   board.reset();
@@ -185,7 +194,10 @@ const ChessGame = () => {
               Reset
             </button>
             <button
-              style={buttonStyle}
+              style={{
+                width: '100px',
+                height: '100px',
+              }}
               onClick={() => {
                 safeMutation((board) => {
                   board.undo();

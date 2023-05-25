@@ -1,10 +1,10 @@
 import React from 'react';
-import Board from './BoardPvP';
+import BoardPvP from './BoardPvP';
 
 const PvPTTT = () => {
   return (
     <div className="app">
-      <Board />
+      <BoardPvP />
     </div>
   );
 };

@@ -15,7 +15,7 @@ const Online = () => {
             image={tictactoeImage}
             title="Tic Tac Toe"
             single="/SoloTTT"
-            online="/onlineTTT"
+            online="/PvPTTT"
           />
           <Card
             image={hangmanImage}
@@ -34,6 +34,12 @@ const Online = () => {
             title="Coming Soon"
             single="/SoloCS"
             online="/onlineCS"
+          />
+          <Card
+            image={comingsoonImage}
+            title="Chess"
+            single="/SoloChess"
+            online="/PvPChess"
           />
         </div>
       </div>

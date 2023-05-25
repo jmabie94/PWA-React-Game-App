@@ -78,7 +78,7 @@ const BoardPvP = () => {
       data.game.winner ||
       data.game.board[index] !== '' ||
       data.game.isGameEnded ||
-      data.game.playerTurn !== `${currentPlayer}` // Replace 'currentPlayer' with the current player's ID
+      data.game.playerTurn !== `X` // Replace 'currentPlayer' with the current player's ID
     ) {
       return;
     }
@@ -166,11 +166,11 @@ const BoardPvP = () => {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
+  // if (error) {
+  //   return <div>Error: {error.message}</div>;
+  // }
 
-  const { board, playerTurn, winner, isGameEnded } = data.game;
+  const { board, playerTurn, winner, isGameEnded } = data?.game;
 
   return (
     <main>

@@ -1,21 +1,65 @@
 import { gql } from '@apollo/client';
 
-export const GET_MESSAGE = gql`
-  subscription messageCreated {
-    text
-    createdBy
+export const MESSAGE_ADDED_SUBSCRIPTION = gql`
+  subscription messageAdded($chatId: ID!) {
+    messageAdded(chatId: $chatId) {
+      id
+      text
+      user {
+        id
+        username
+        email
+      }
+    }
   }
 `;
 
-export const GAME_STATE_SUBSCRIPTION = gql`
-  subscription GameStateSubscription {
-    gameStateUpdated {
+export const BOARD_UPDATED_SUBSCRIPTION = gql`
+  subscription boardUpdated($boardId: ID!) {
+    boardUpdated(boardId: $boardId) {
       id
-      name
-      board
-      playerTurn
-      winner
-      isGameEnded
+      gameId
+      users {
+        id
+        username
+        email
+      }
+      whoseTurn {
+        id
+        username
+        email
+      }
+      isGameOver
+      winner {
+        id
+        username
+        email
+      }
+    }
+  }
+`;
+
+export const LEADERBOARD_UPDATED_SUBSCRIPTION = gql`
+  subscription leaderboardUpdated {
+    leaderboardUpdated {
+      id
+      game {
+        id
+        name
+      }
+      userGameStats {
+        id
+        user {
+          id
+          username
+          email
+        }
+        gameStats {
+          id
+          wins
+          losses
+        }
+      }
     }
   }
 `;

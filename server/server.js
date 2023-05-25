@@ -3,29 +3,25 @@ const { createServer } = require('http');
 const { makeExecutableSchema } = require('@graphql-tools/schema');
 const { SubscriptionServer } = require('subscriptions-transport-ws');
 const { execute, subscribe } = require('graphql');
-const { ApolloServer, PubSub } = require('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
 
-const pubsub = new PubSub();
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 const httpServer = createServer(app);
-
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
   context: authMiddleware,
 });
 
-// unsure of this switch but could potential make subscriptions work cleaner to change path to /subscriptions for the subscription server?
 const subscriptionServer = SubscriptionServer.create(
   { schema, execute, subscribe },
-  { server: httpServer, path: '/subscriptions' }
+  { server: httpServer, path: '/graphql' }
 );
 
 const server = new ApolloServer({
@@ -41,9 +37,6 @@ const server = new ApolloServer({
       },
     },
   ],
-  context: () => {
-    return { pubsub };
-  },
 });
 
 app.use(express.urlencoded({ extended: true }));
@@ -64,7 +57,6 @@ const startApolloServer = async () => {
   db.once('open', () => {
     httpServer.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
-      // did something change in a refactor along the way where graphqlPath is no longer being designated, because if so we really need to update the following console.log
       console.log(
         `Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`
       );
