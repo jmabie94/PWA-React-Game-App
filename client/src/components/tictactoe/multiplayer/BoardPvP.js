@@ -5,7 +5,7 @@ import './pvp.css';
 import Header from './headerPvP';
 
 const BoardPvP = () => {
-// need to refactor from scratch
+  // need to refactor from scratch
 };
 
 export default BoardPvP;

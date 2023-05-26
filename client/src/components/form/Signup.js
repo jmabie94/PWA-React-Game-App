@@ -10,7 +10,7 @@ const Signup = () => {
     email: '',
     password: '',
   });
-  const [signUp, {error, data }] = useMutation(CREATE_USER);
+  const [signUp, { error, data }] = useMutation(CREATE_USER);
 
   const handleSignupSubmit = async (event) => {
     event.preventDefault();
@@ -19,7 +19,7 @@ const Signup = () => {
       const { data } = await signUp({
         variables: { ...formState },
       });
-      
+
       console.log(data);
       AuthService.login(data.createUser.token);
       if (localStorage.getItem('email') !== null) {

@@ -13,11 +13,11 @@ import { Chessboard } from 'react-chessboard';
 // use localstorage or put/get to graphql to register wins and losses
 const ChessGame = () => {
   const [game, setGame] = useState(new Chess());
-  const [moveFrom, setMoveFrom] = useState("");
+  const [moveFrom, setMoveFrom] = useState('');
   const [rightClickedSquares, setRightClickedSquares] = useState({});
   const [moveSquares, setMoveSquares] = useState({});
   const [optionSquares, setOptionSquares] = useState({});
-  const [playerTurn, setPlayerTurn] = useState("white");
+  const [playerTurn, setPlayerTurn] = useState('white');
   const [winner, setWinner] = useState('');
 
   function safeGameMutate(modify) {
@@ -41,15 +41,16 @@ const ChessGame = () => {
     moves.map((move) => {
       newSquares[move.to] = {
         background:
-          game.get(move.to) && game.get(move.to).color !== game.get(square).color
-            ? "radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%)"
-            : "radial-gradient(circle, rgba(0,0,0,.1) 25%, transparent 25%)",
-        borderRadius: "50%",
+          game.get(move.to) &&
+          game.get(move.to).color !== game.get(square).color
+            ? 'radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%)'
+            : 'radial-gradient(circle, rgba(0,0,0,.1) 25%, transparent 25%)',
+        borderRadius: '50%',
       };
       return move;
     });
     newSquares[square] = {
-      background: "rgba(255, 255, 0, 0.4)",
+      background: 'rgba(255, 255, 0, 0.4)',
     };
     setOptionSquares(newSquares);
     return true;
@@ -61,24 +62,24 @@ const ChessGame = () => {
     // exit if the game is over
     // if (game.game_over() || game.in_draw() || possibleMoves.length === 0) return;
     if (game.game_over() && winner === '') {
-      setWinner("white");
-      console.log("winner = ", winner);
+      setWinner('white');
+      console.log('winner = ', winner);
       return;
     } else if (game.in_draw() && winner === '') {
-      setWinner("draw");
+      setWinner('draw');
       return;
     } else if (possibleMoves.length === 0 && winner === '') {
-      setWinner("white");
+      setWinner('white');
       return;
     }
-    console.log("winner = ", winner);
+    console.log('winner = ', winner);
 
     const randomIndex = Math.floor(Math.random() * possibleMoves.length);
     safeGameMutate((game) => {
       game.move(possibleMoves[randomIndex]);
     });
 
-    setPlayerTurn("white");
+    setPlayerTurn('white');
   }
 
   function onSquareClick(square) {
@@ -86,17 +87,17 @@ const ChessGame = () => {
     const possibleMoves = game.moves();
 
     if (game.game_over() && winner === '') {
-      setWinner("black");
-      console.log("winner = ", winner);
+      setWinner('black');
+      console.log('winner = ', winner);
       return;
     } else if (game.in_draw() && winner === '') {
-      setWinner("draw");
+      setWinner('draw');
       return;
     } else if (possibleMoves.length === 0 && winner === '') {
-      setWinner("black");
+      setWinner('black');
       return;
     }
-    console.log("winner = ", winner);
+    console.log('winner = ', winner);
 
     function resetFirstMove(square) {
       const hasOptions = getMoveOptions(square);
@@ -114,7 +115,7 @@ const ChessGame = () => {
     const move = gameCopy.move({
       from: moveFrom,
       to: square,
-      promotion: "q", // always promote to a queen for example simplicity
+      promotion: 'q', // always promote to a queen for example simplicity
     });
     setGame(gameCopy);
 
@@ -124,19 +125,19 @@ const ChessGame = () => {
       return;
     }
 
-    setPlayerTurn("black");
+    setPlayerTurn('black');
     setTimeout(makeRandomMove, 300);
-    setMoveFrom("");
+    setMoveFrom('');
     setOptionSquares({});
   }
 
   function onSquareRightClick(square) {
-    const colour = "rgba(0, 0, 255, 0.4)";
+    const colour = 'rgba(0, 0, 255, 0.4)';
     setRightClickedSquares({
       ...rightClickedSquares,
       [square]:
         rightClickedSquares[square] &&
-          rightClickedSquares[square].backgroundColor === colour
+        rightClickedSquares[square].backgroundColor === colour
           ? undefined
           : { backgroundColor: colour },
     });
@@ -145,12 +146,13 @@ const ChessGame = () => {
   return (
     <main>
       <Header />
-      <section className='chessboard-section'>
-        <div style={{
-          margin: '3ren auto',
-          maxWidth: '70vh',
-          width: '70vw'
-        }}
+      <section className="chessboard-section">
+        <div
+          style={{
+            margin: '3ren auto',
+            maxWidth: '70vh',
+            width: '70vw',
+          }}
         >
           <Chessboard
             id="ClickToMove"
@@ -160,8 +162,8 @@ const ChessGame = () => {
             onSquareClick={onSquareClick}
             onSquareRightClick={onSquareRightClick}
             customBoardStyle={{
-              borderRadius: "4px",
-              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.5)",
+              borderRadius: '4px',
+              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
             }}
             customSquareStyles={{
               ...moveSquares,
@@ -170,7 +172,7 @@ const ChessGame = () => {
             }}
           />
           <button
-            className='button'
+            className="button"
             onClick={() => {
               safeGameMutate((game) => {
                 game.reset();
@@ -183,7 +185,7 @@ const ChessGame = () => {
             Reset
           </button>
           <button
-            className='button'
+            className="button"
             onClick={() => {
               safeGameMutate((game) => {
                 game.undo();
@@ -204,14 +206,18 @@ const ChessGame = () => {
           ) : (
             <p>{winner} won the game!</p>
           )}
-          <button onClick={() => {
-            safeGameMutate((game) => {
-              game.reset();
-            });
-            setMoveSquares({});
-            setRightClickedSquares({});
-            setWinner('');
-          }}>Reset</button>
+          <button
+            onClick={() => {
+              safeGameMutate((game) => {
+                game.reset();
+              });
+              setMoveSquares({});
+              setRightClickedSquares({});
+              setWinner('');
+            }}
+          >
+            Reset
+          </button>
         </div>
       )}
     </main>

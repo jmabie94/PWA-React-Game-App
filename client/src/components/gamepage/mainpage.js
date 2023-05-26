@@ -3,6 +3,7 @@ import Card from './card';
 import tictactoeImage from '../images/tictactoeImage.png';
 import hangmanImage from '../images/hangmanImage.png';
 import battleshipImage from '../images/battleshipImage.png';
+import chessImage from '../images/chessImage.jpg';
 import comingsoonImage from '../images/comingsoonImage.png';
 
 const Online = () => {
@@ -30,16 +31,16 @@ const Online = () => {
             online="/onlineBattleship"
           />
           <Card
+            image={chessImage}
+            title="Chess"
+            single="/SoloChess"
+            online="/PvPChess"
+          />
+          <Card
             image={comingsoonImage}
             title="Coming Soon"
             single="/SoloCS"
             online="/onlineCS"
-          />
-          <Card
-            image={comingsoonImage}
-            title="Chess"
-            single="/SoloChess"
-            online="/PvPChess"
           />
         </div>
       </div>

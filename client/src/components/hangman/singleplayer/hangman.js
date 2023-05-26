@@ -128,16 +128,18 @@ const SoloHangman = () => {
   };
 
   return (
-    <div className="hangman">
-      <img id="hangman-img" src={hangmanImage} alt="hangman" />
-      <div id="word" className="word">
-        {wordText}
+    <div className="hangman-hero">
+      <div className="hangman">
+        <img id="hangman-img" src={hangmanImage} alt="hangman" />
+        <div id="word" className="word">
+          {wordText}
+        </div>
+        <div id="letters">{displayLetters()}</div>
+        <div id="message">{message}</div>
+        <button id="reset-btn" className="btn" onClick={resetGame}>
+          New Game
+        </button>
       </div>
-      <div id="letters">{displayLetters()}</div>
-      <div id="message">{message}</div>
-      <button id="reset-btn" className="btn" onClick={resetGame}>
-        New Game
-      </button>
     </div>
   );
 };
