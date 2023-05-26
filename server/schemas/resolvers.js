@@ -68,15 +68,15 @@ const resolvers = {
       return { token, user };
     },
     createProfile: async (parent, { userId }) => {
-      const user = await User.findById(userId)
+      const user = await User.findById(userId);
       if (!user) {
         throw new Error('User not found!');
       }
 
-      console.log("userId: ", typeof userId);
+      console.log('userId: ', typeof userId);
       let profile = await Profile.findById(userId);
       if (!profile) {
-        const newprofile = await Profile.create({user: user});
+        const newprofile = await Profile.create({ user: user });
         profile = newprofile;
       }
 
