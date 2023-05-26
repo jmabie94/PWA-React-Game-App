@@ -2,7 +2,7 @@
 
 ## Description
 
-#### React Game with React Chat -- needs more detailed description
+#### An App which allows users to play a selection of classic games within their browser (TicTacToe, Hangman, Battleship and Chess) against computer players to entertain themselves, develop their skills and eventually display a leaderboard with their Win/Loss ratio! Long-term development, the plan is to add a live chat application and multiplayer game options both using GraphQL Subscriptions; we also hope to add a difficulty scale for the games rather than having all the Computer players as randomized bots. 
 
 #### Due to difficulties we had to start over with a new repository, this is part of an attempt at refactoring the original starting repository: https://github.com/apostlex11/PWA-PROJECT
 
@@ -50,18 +50,29 @@ Finally, the application should open automatically in your browser!
 
 ## Media
 
-### Screenshot:
+### Login & SignUp Slider:
 
-![Screenshot 1](file.location)
+![Login Screen](/client/src/components/images/screenshots/login-screenshot.png)
+![Signup Screen](/client/src/components/images/screenshots/signup-screenshot.png)
 
-### Another Screenshot:
+### Profile:
 
-![Screenshot 2](file.location2)
+![Profile Screen](/client/src/components/images/screenshots/profile-screenshot.png)
 
-### Video Walkthrough:
-
-![Video Walkthrough](file.video.location)
+### Game Menu:
+![Game Menu Screen](/client/src/components/images/screenshots/gamemenu-screenshot.png)
 ​
+### Solo TicTacToe:
+![Solo TicTacToe Screen](/client/src/components/images/screenshots/tictactoe-screenshot.png)
+
+### Solo Hangman:
+![Solo Hangman Screen](/client/src/components/images/screenshots/hangman-screenshot.png)
+
+### Solo Battleship:
+![Solo BattleShip Screen](/client/src/components/images/screenshots/battleshipt-screenshot.png)
+
+### Solo Chess:
+![Solo Chess Screen](/client/src/components/images/screenshots/chess-screenshot.png)
 
 ## Credits
 
