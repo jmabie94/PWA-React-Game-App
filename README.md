@@ -70,6 +70,7 @@ Finally, the application should open automatically in your browser!
 - Jordan Pace (https://github.com/Jaydonger)
 - Terry Sa (https://github.com/apostlex11)
 - Jack Mabie (https://github.com/jmabie94)
+- Christopher DuBois (https://github.com/rhubarb414)
   ​
 
 ## Technology Used
