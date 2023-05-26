@@ -4,7 +4,7 @@
 
 #### React Game with React Chat -- needs more detailed description
 
-#### Due to difficulties trying to host multiple servers in a single React app, we are splitting the project into two separate React apps running separate servers, this Repository is part of an attempt at refactoring the original working repository: https://github.com/apostlex11/PWA-PROJECT
+#### Due to difficulties we had to start over with a new repository, this is part of an attempt at refactoring the original starting repository: https://github.com/apostlex11/PWA-PROJECT
 
 ---
 
@@ -31,7 +31,7 @@ SO THAT we can enjoy the game similarly to playing in-person!
 
 Utilizing the Application is simple!
 
-Option A - Use the Heroku(?) deployment directly by way of (Heroku Link).
+Option A - Use the Heroku deployment directly by way of https://whispering-beach-93510.herokuapp.com/.
 
 Option B - Clone the repo:
 
@@ -42,12 +42,11 @@ Next, open an integrated terminal in your cloned folder and do the following:
     run "npm init -y"
     run "npm i"
 
-After Node Packages have installed, invoke the application (maybe?):
+After Node Packages have installed, invoke the application:
 
-    run "npm run develop"
+    run "npm run launch"
 
 Finally, the application should open automatically in your browser!
-​
 
 ## Media
 
@@ -81,9 +80,12 @@ Finally, the application should open automatically in your browser!
     - MongoDB Atlas
     - Heroku
     - GraphQL
+    - GraphQL WebSocket
+    - GraphQL Subscriptions
     - Apollo Client
     - MERN
-    - Socket IO
+    - Chess.js
+    - react-chessboard
     - Other stuff
 
 ## License

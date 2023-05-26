@@ -39,8 +39,10 @@ export const PlayerBoard = ({
     layout
   );
 
-  const isPlacingOverBoard = currentlyPlacing && currentlyPlacing.position != null;
-  const canPlaceCurrentShip = isPlacingOverBoard && canBePlaced(currentlyPlacing, layout);
+  const isPlacingOverBoard =
+    currentlyPlacing && currentlyPlacing.position != null;
+  const canPlaceCurrentShip =
+    isPlacingOverBoard && canBePlaced(currentlyPlacing, layout);
 
   if (isPlacingOverBoard) {
     if (canPlaceCurrentShip) {

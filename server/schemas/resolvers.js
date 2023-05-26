@@ -24,6 +24,20 @@ const resolvers = {
     getUser: async (parent, { id }) => {
       return User.findById(id);
     },
+    // adding getUserProfile to populate Profile
+    getUserProfile: async (parent, { userId }) => {
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new Error('User not found!');
+      }
+
+      const profile = await Profile.findOne({ user: user.id });
+
+      return {
+        user,
+        profile,
+      };
+    },
     getGame: async (parent, { id }) => {
       return Game.findById(id);
     },
@@ -49,7 +63,7 @@ const resolvers = {
   },
   Mutation: {
     createUser: async (parent, { username, email, password }) => {
-      const user = await User.create({username, email, password});
+      const user = await User.create({ username, email, password });
       const token = signToken(user);
       return { token, user };
     },
@@ -58,7 +72,14 @@ const resolvers = {
       if (!user) {
         throw new Error('User not found!');
       }
-      const profile = await Profile.create({ user: user._id, gameStats: [] });
+
+      console.log('userId: ', typeof userId);
+      let profile = await Profile.findById(userId);
+      if (!profile) {
+        const newprofile = await Profile.create({ user: user });
+        profile = newprofile;
+      }
+
       return profile;
     },
     login: async (parent, { email, password }) => {

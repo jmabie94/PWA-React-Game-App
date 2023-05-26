@@ -15,7 +15,9 @@ export const Ships = ({
     <ShipBox
       selectShip={selectShip}
       key={shipName}
-      isCurrentlyPlacing={currentlyPlacing && currentlyPlacing.name === shipName}
+      isCurrentlyPlacing={
+        currentlyPlacing && currentlyPlacing.name === shipName
+      }
       shipName={shipName}
       availableShips={availableShips}
     />
@@ -23,8 +25,8 @@ export const Ships = ({
 
   let placeShip = (
     <div id="place-ship">
-        <p>Click a ship and place</p>
-        <p>on your board.</p>
+      <p>Click a ship and place</p>
+      <p>on your board.</p>
       {shipBoxes}
       <p className="center-display">Right click to rotate!</p>
       <button className="restart" onClick={playAgain}>

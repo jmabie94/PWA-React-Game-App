@@ -3,6 +3,7 @@ import AuthService from '../../utils/auth';
 import { useQuery } from '@apollo/client';
 import { GET_USER_BY_EMAIL } from '../../utils/queries.js';
 import './navigation.css';
+import basicplayzoneicon from '../images/basicplayzoneicon.jpg';
 
 const NavigationBar = () => {
   // need to get ID from localStorage, not email
@@ -22,7 +23,7 @@ const NavigationBar = () => {
       ) : (
         <h1 id="navh1">Login or sign up to play!</h1>
       )}
-      <img className="logo" src="/" alt="logo"></img>
+      <img className="logo" src={basicplayzoneicon} alt="logo"></img>
       <nav>
         <ul className="nav_links">
           <li>
@@ -35,7 +36,7 @@ const NavigationBar = () => {
             <Link to="/profile">Profile</Link>
           </li>
           <li>
-            <Link to="/">Chat</Link>
+            <Link to="/leaderboard">Leaderboard</Link>
           </li>
         </ul>
       </nav>

@@ -46,7 +46,6 @@ export const CenterDisplay = ({
   );
 };
 
-
 export const Board = ({
   availableShips,
   selectShip,
@@ -70,7 +69,7 @@ export const Board = ({
   setBotShips,
 }) => {
   return (
-      <div className="hero-img">
+    <div className="hero-img">
       <br></br>
       <h2>BattleShips</h2>
       <section id="game-screen">
@@ -81,24 +80,24 @@ export const Board = ({
           placeShip={placeShip}
           placedShips={placedShips}
           hitsByBot={hitsByBot}
-          />
+        />
         {gameState !== 'placement' ? (
           <CenterDisplay
-          gameState={gameState}
-          hitsByPlayer={hitsByPlayer}
-          hitsByBot={hitsByBot}
-          winner={winner}
-          playAgain={playAgain}
+            gameState={gameState}
+            hitsByPlayer={hitsByPlayer}
+            hitsByBot={hitsByBot}
+            winner={winner}
+            playAgain={playAgain}
           />
-          ) : (
-            <Ships
+        ) : (
+          <Ships
             availableShips={availableShips}
             selectShip={selectShip}
             currentlyPlacing={currentlyPlacing}
             startGame={startGame}
             playAgain={playAgain}
-            />
-            )}
+          />
+        )}
 
         <BotBoard
           botShips={botShips}
@@ -110,7 +109,7 @@ export const Board = ({
           botsTurn={botsTurn}
           checkIfGameOver={checkIfGameOver}
           setBotShips={setBotShips}
-          />
+        />
       </section>
     </div>
   );

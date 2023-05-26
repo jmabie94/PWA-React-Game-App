@@ -13,8 +13,8 @@ section {
 }
 
 .hero-img {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5),
-  rgba(0, 0, 0, 0.5)), url('../../images/battleship/heroBattleShip4.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('../../images/battleship/heroBattleShip4.jpg');
   height: 100%;
   background-position: center;
 
@@ -22,7 +22,6 @@ section {
 
   margin-top: -15px;
 }
-
 
 #game-screen {
   display: flex;
@@ -42,7 +41,8 @@ section {
   width: 200px;
   max-height: 500px;
   padding: 1em;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   text-align: center;
   align-self: center;
   display: flex;
@@ -61,7 +61,8 @@ section {
 .center-display,
 #battle-start {
   margin-top: 1em;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   text-transform: none;
   color: rgb(0, 0, 0);
   font-weight: bold;
@@ -69,9 +70,10 @@ section {
 
 .restart {
   color: rgb(0, 0, 0);
-  background-color:rgb(0, 255, 47);
+  background-color: rgb(0, 255, 47);
   border: 1px solid green;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   cursor: pointer;
   font-size: 16px;
   margin: 1em;
@@ -85,19 +87,18 @@ header {
   text-align: center;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-size: 38px;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   justify-content: center;
   align-items: center;
   display: flex;
   color: rgb(255, 0, 0);
   margin-top: 15px;
-  text-shadow:
-  -1px -1px 0 rgb(131, 2, 2),
-   1px -1px 0 rgb(158, 2, 2),
-  -1px  1px 0 rgb(158, 2, 2),
-   1px  1px 0 rgb(158, 2, 2);
+  text-shadow: -1px -1px 0 rgb(131, 2, 2), 1px -1px 0 rgb(158, 2, 2),
+    -1px 1px 0 rgb(158, 2, 2), 1px 1px 0 rgb(158, 2, 2);
 }
 
 .subtitle {
@@ -105,20 +106,22 @@ h1, h2 {
   color: rgb(101, 38, 146);
 }
 
-
 h2,
 p {
   margin: 0;
 }
 
-h1, h2 {
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+h1,
+h2 {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   text-transform: uppercase;
-  margin-top: 15px
+  margin-top: 15px;
 }
 
 p {
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
@@ -127,11 +130,12 @@ button {
   width: 170px;
   height: 50px;
   border-radius: 3px;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 16px;
   margin: 1em;
   border: none;
-  background-color:rgb(213, 64, 64);
+  background-color: rgb(213, 64, 64);
   color: rgb(0, 0, 0);
 }
 
@@ -147,7 +151,6 @@ button:active {
   position: relative;
   top: 1px;
 }
-
 
 #place-ship {
   padding: 1em;
@@ -196,7 +199,8 @@ button:active {
 .boxedShips-title {
   font-size: 14px;
   text-transform: capitalize;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: rgb(0, 0, 0);
 }
 
@@ -218,14 +222,11 @@ button:active {
   color: rgb(0, 218, 178);
   text-align: center;
   font-size: 30px;
-  text-shadow:
-      -1px -1px 0 rgb(1, 113, 251),
-       1px -1px 0 rgb(1, 113, 251),
-      -1px  1px 0 rgb(1, 113, 251),
-       1px  1px 0 rgb(1, 113, 251);
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-shadow: -1px -1px 0 rgb(1, 113, 251), 1px -1px 0 rgb(1, 113, 251),
+    -1px 1px 0 rgb(1, 113, 251), 1px 1px 0 rgb(1, 113, 251);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-
 
 /* --------------Board-------------------------  */
 

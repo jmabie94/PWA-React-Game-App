@@ -17,11 +17,8 @@ main {
 .winner-message {
   font-size: 30px;
   color: rgb(255, 0, 0);
-  text-shadow:
-  -1px -1px 0 rgb(13, 0, 0),
-   1px -1px 0 rgb(13, 0, 0),
-  -1px  1px 0 rgb(13, 0, 0),
-   1px  1px 0 rgb(13, 0, 0);
+  text-shadow: -1px -1px 0 rgb(13, 0, 0), 1px -1px 0 rgb(13, 0, 0),
+    -1px 1px 0 rgb(13, 0, 0), 1px 1px 0 rgb(13, 0, 0);
   justify-content: center;
   display: flex;
   align-items: center;
@@ -81,8 +78,8 @@ footer {
 }
 
 .app {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5),
-  rgba(0, 0, 0, 0.5)), url('../../images/tictactoe/tictactoe.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('../../images/tictactoe/tictactoe.jpg');
   height: 100%;
   background-position: center;
 
