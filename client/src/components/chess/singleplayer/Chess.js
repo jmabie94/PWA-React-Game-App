@@ -3,7 +3,7 @@ import ChessGame from './Chessboard';
 
 const SoloChess = () => {
   return (
-    <div className="app">
+    <div className="chessApp">
       <ChessGame />
     </div>
   );
