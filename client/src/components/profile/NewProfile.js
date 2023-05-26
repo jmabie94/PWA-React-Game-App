@@ -3,60 +3,36 @@ import './profile.css';
 
 import React from 'react';
 import Auth from '../../utils/auth';
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
 import { GET_USER_BY_EMAIL, GET_USER } from '../../utils/queries';
-import { CREATE_PROFILE } from '../../utils/mutations';
+// import { CREATE_PROFILE } from '../../utils/mutations';
 
 // refactor for multiple queries
 export default function NewProfile() {
+
     // get the email
     const email = localStorage.getItem('email');
+    console.log("email :", email);
 
     // get the user by their email, aiming for the id
     const userEmail = useQuery(GET_USER_BY_EMAIL, {
         variables: { email },
     });
+    console.log("userEmail: ", userEmail);
 
     // make sure the user shows up
-    const userData = userEmail.data?.user
-
-    // test formatting
-    console.log("User Data:", userData);
-    
-    // set the userId
-    const userId = userData.id;
-
-    // test userId
+    // const userData = userEmail.data?.user
+    const userId = userEmail?.data?.user.id;
     console.log("User Id:", userId);
 
-    // get the full user model from the userId
     const userIdData = useQuery(GET_USER, {
         variables: { id: userId },
     });
+    const userData = userIdData;
 
-    // stage to check the full user model is received
-    const dataProfile = userIdData;
-    
-    // test the full user model
-    console.log("Data Profile: ", dataProfile);
-
-    // set CREATE_PROFILE as a function()
-    // const [createProfile] = useMutation(CREATE_PROFILE);
-
-    // if the full user model has no profile information, create a new profile
-    // missing useEffect if statement thing
-
-    // get the full profile of the user
-    const fullProfile = useMutation(CREATE_PROFILE, {
-        variables: { userId: userId },
-    });
-
-    // test the full profile
-    console.log("Full Profile: ", fullProfile)
-
-    const error = userEmail.error || userIdData.error || fullProfile.error;
-    const loading = userEmail.loading || userIdData.loading || fullProfile.loading;
+    const error = userEmail?.error || userData?.error;
+    const loading = userEmail?.loading || userData?.loading;
 
     if (loading) {
         return <h2>LOADING...</h2>;
@@ -68,14 +44,14 @@ export default function NewProfile() {
 
     return (
         <div>
-            {Auth.loggedIn() ? (
+            {Auth.loggedIn() && userData ? (
                 <>
-                    <h1>Welcome, User</h1>
-                    {fullProfile.gameStats ? (
+                    <h1>Welcome, {userData.data.getUser.username}</h1>
+                    {userData.data.getUser.gameStats ? (
                         <div className='stats-container'>
                             <h2>Your Stats:</h2>
                             <ul className='stat-list'>
-                                {fullProfile.gameStats.map((gameStat) => {
+                                {userData.data.getUser.gameStats.map((gameStat) => {
                                     <li key={gameStat.id}>
                                         <strong>Game: </strong> {gameStat.game.name} <br />
                                         <strong>Wins: </strong> {gameStat.wins} <br />
